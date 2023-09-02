@@ -10,5 +10,4 @@ class Item(BaseModel):
     Blood_Pressure: str
     Cholesterol_Level: str
     Disease_freq: str
-    outcome: str
 
