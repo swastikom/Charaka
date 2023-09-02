@@ -4,7 +4,6 @@ from model.outcome import Item
 import pandas as pd
 import pickle
 import numpy as np
-import os
 
 router = APIRouter()
 
@@ -15,9 +14,6 @@ class Tags(Enum):
 
 @router.post("/predict_outcome", tags=[Tags.predict_result])
 def prediction(input_data: Item):
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    ml_model_path = os.path.join(
-        current_dir, '..','training', 'model', 'prediction.pkl')
     
     with open('../training/model/prediction.pkl', 'rb') as file:
         clf, ferver_encoder, cough_encoder, fatigue_encoder, breathing_encoder, blood_encoder, fat_encoder, gender_encoder, outcome_encoder, category_counts = pickle.load(file)
