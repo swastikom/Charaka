@@ -1,15 +1,19 @@
 from fastapi import APIRouter, Depends, HTTPException
-from functions.auth import get_password_hash
 from jose import jwt, JWTError
 from enum import Enum
 from email_validator import validate_email, EmailNotValidError
 from mongoengine import DoesNotExist
-from model.user import NewUser
+from model.user import NewUser, NameUpdateRequest, EmailUpdateRequest
+from functions.auth import oauth2_scheme, SECRET_KEY, ALGORITHM, get_password_hash
 from schemas.user import User
 import json
 
 
 router = APIRouter()
+
+
+class Tags(Enum):
+    users = "User Routes"
 
 #Create User
 @router.post("/signup", tags=['User'])
@@ -58,3 +62,57 @@ def signup(new_user: NewUser):
     saved_user = json.loads(user_signup.to_json())
     return {"saved User": saved_user}
 
+
+@router.get('/', tags=['Home'])
+def home():
+    return {"message": "Let's make it green!"}
+
+
+@router.get("/current_user", tags=[Tags.users])
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email = payload.get("sub")
+        user = User.objects.get(email=email)
+        user_data = json.loads(user.to_json())
+        return {"current_user": user_data}
+    except (JWTError, User.DoesNotExist):
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
+
+
+@router.delete('/user/delete', tags=[Tags.users])
+async def delete_user(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email = payload.get("sub")
+        user = User.objects.get(email=email)
+        user.delete()
+        return {'message': 'User deleted successfully'}
+    except DoesNotExist:
+        raise HTTPException(status_code=404, detail='User not found')
+
+
+@router.put('/user/update/name', tags=[Tags.users])
+async def update_Name(name: NameUpdateRequest, token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email = payload.get("sub")
+        user = User.objects.get(email=email)
+        user.name = name.name
+        user.save()
+        return {'message': 'Name Updated Successfully !'}
+    except DoesNotExist:
+        raise HTTPException(status_code=404, detail='User not found')
+
+
+@router.put('/user/update/email', tags=[Tags.users])
+async def update_email(email: EmailUpdateRequest, token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email = payload.get("sub")
+        user = User.objects.get(email=email)
+        user.email = email.email
+        user.save()
+        return {'message': 'Name Updated Successfully !'}
+    except DoesNotExist:
+        raise HTTPException(status_code=404, detail='User not found')
