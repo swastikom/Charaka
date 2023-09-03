@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from functions.auth import get_password_hash
 from jose import jwt, JWTError
 from enum import Enum
 from email_validator import validate_email, EmailNotValidError
@@ -14,6 +15,8 @@ router = APIRouter()
 @router.post("/signup", tags=['User'])
 def signup(new_user: NewUser):
     password = new_user.password
+    confirm_password = new_user.confirm_password
+    
 
     if len(password) < 8:
         raise HTTPException(
@@ -28,23 +31,24 @@ def signup(new_user: NewUser):
         raise HTTPException(
             status_code=400, detail="Password must contain at least one uppercase letter.")
 
-    # hashed_password = get_password_hash(password)
+    
+    if password!=confirm_password:
+        raise HTTPException(
+            status_code=400, detail="Password did not matched!")
+    hashed_password = get_password_hash(password)
+    
     user_signup = User(
         name=new_user.name,
-        country=new_user.country,
-        username=new_user.username,
-        password=password,
-        email=new_user.email
-    )
+        password=hashed_password,
+        email=new_user.email,
+        country=new_user.country
+        )
 
     try:
         validate_email(new_user.email)  # Validate the email
         if User.objects.filter(email=new_user.email).first():
             raise HTTPException(
                 status_code=409, detail="This email is already in use!")
-        elif User.objects.filter(username=new_user.username).first():
-            raise HTTPException(
-                status_code=409, detail="This username is already in use!")
         else:
             user_signup.email = new_user.email
     except EmailNotValidError:

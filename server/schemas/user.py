@@ -17,6 +17,9 @@ class User(Document):
     name = StringField()
     email = EmailField()
     password = StringField()
+    country = StringField()
     propertyList = ListField(EmbeddedDocumentField(Item))
     password_reset_otp = StringField()
+    
+
 
