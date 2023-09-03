@@ -7,3 +7,4 @@ class NewUser(BaseModel):
     password: str
     email: EmailStr
     country: str
+

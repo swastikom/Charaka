@@ -1,2 +1,13 @@
+pymongo
 fastapi
 pydantic
+virtualenv
+uvicorn
+pydantic[email]
+python-jose[cryptography]
+passlib[bcrypt]
+mongoengine
+pyotp
+python-dotenv
+geopy
+passlib
