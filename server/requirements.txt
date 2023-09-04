@@ -11,3 +11,4 @@ pyotp
 python-dotenv
 geopy
 passlib
+uuid

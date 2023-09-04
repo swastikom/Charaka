@@ -28,6 +28,17 @@ class IdealUser(BaseModel):
     username: str
     password: str
     email: EmailStr
-    propertyList: List[Item]
+    itemList: List[Item]
     password_reset_otp: str
 
+class ItemCreate(BaseModel):
+    fever:str
+    cough:str
+    fatigue:str
+    diff_breathing:str
+    age:int
+    gender:str
+    blood_pressure:str
+    col_level:str
+    dis_freq:str
+    outcome:str
