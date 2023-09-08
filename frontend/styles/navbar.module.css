@@ -8,10 +8,11 @@
     background: rgba(0, 0, 0, 0.838);
     backdrop-filter: blur(15px);
     border-bottom: 0.5px solid rgba(178, 178, 178, 0.19);
+    height: 4.5em;
 }
 
 .container h1 {
-    background: -webkit-linear-gradient(rgb(41, 91, 255), #7075ff);
+    background: -webkit-linear-gradient(rgb(41, 120, 255), #0178ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-style: normal;
@@ -42,7 +43,7 @@
 .hamburger {
     background: none;
     outline: none;
-    color: #690bff;
+    color: #0178ff;
     border: none;
     font-size: 1.2em;
     display: flex;
