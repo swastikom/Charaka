@@ -1,0 +1,51 @@
+.container {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 1em 0em;
+    background: rgba(0, 0, 0, 0.838);
+    backdrop-filter: blur(15px);
+    border-bottom: 0.5px solid rgba(178, 178, 178, 0.19);
+}
+
+.container h1 {
+    background: -webkit-linear-gradient(rgb(41, 91, 255), #7075ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.links {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.links.active {
+    display: flex;
+}
+
+.links li {
+    padding-left: 1em;
+    padding-right: 1em;
+    color: rgb(193, 193, 193);
+}
+
+.links li:hover {
+    color: aliceblue;
+}
+
+.hamburger {
+    background: none;
+    outline: none;
+    color: #690bff;
+    border: none;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
