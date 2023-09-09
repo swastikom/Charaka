@@ -1,10 +1,10 @@
 import React from 'react'
 import HeroLeft from "@/components/home/hero/HeroLeft";
 import HeroRight from "@/components/home/hero/HeroRight";
-import styles from '@/styles/hero.module.css'
+import styles from '@/styles/base.module.css'
 function Hero() {
   return (
-    <div className={styles.hero}>
+    <div className={styles.base}>
       <HeroLeft />
       <HeroRight />
     </div>
