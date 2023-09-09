@@ -4,7 +4,7 @@ import HeroRight from "@/components/home/hero/HeroRight";
 import styles from '@/styles/base.module.css'
 function Hero() {
   return (
-    <div className={styles.base}>
+    <div className={styles.base_hero}>
       <HeroLeft />
       <HeroRight />
     </div>

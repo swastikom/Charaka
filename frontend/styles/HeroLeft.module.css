@@ -1,0 +1,41 @@
+.HeroLeft{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    /* width: 34%; */
+}
+
+.HeroLeft h1{
+    font-size: 3em;
+    background: -webkit-linear-gradient(rgb(87, 149, 255), #0178ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    
+}
+
+.HeroLeft h2 {
+    font-size: 1.6em;
+    font-weight: lighter;
+}
+
+.HeroLeft button{
+    width: fit-content;
+    padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-weight: bold;
+    font-size: 1.5em;
+    border-radius: 0.3em;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: black;
+    background-color: #0149ff;
+}
+
+.HeroLeft button:hover{
+    cursor: pointer;
+    background-color: blue;
+}
