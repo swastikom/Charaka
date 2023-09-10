@@ -10,3 +10,17 @@
     align-items: center;
     justify-content: center;
 }
+
+.base_authtype{
+    height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+}
+
+.input_segment{
+    display: flex;
+    align-items: center;
+}
