@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import styles from "@/styles/LeftForm.module.css";
 import { ImCross } from "react-icons/im";
-import {FaAngleLeft} from "react-icons/fa"
+import {FaAngleLeft} from "react-icons/fa";
+import Response from "./Response";
 
 const validDiseases = [
   "Influenza",
@@ -144,7 +145,7 @@ function LeftForm() {
     Disease_freq: "",
   });
 
-  const [isFormIncomplete, setIsFormIncomplete] = useState(false);
+  const [responseComponent, setResponseComponent] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [ageValue, setAgeValue] = useState("");
   const [ageError, setAgeError] = useState(""); // Add state for age error
@@ -236,6 +237,24 @@ function LeftForm() {
     
   };
 
+  const handleResponse = () =>{
+    setFormData({
+      Fever: "",
+      Cough: "",
+      Fatigue: "",
+      Difficulty_Breathing: "",
+      Age: 0,
+      Gender: "",
+      Blood_Pressure: "",
+      Cholesterol_Level: "",
+      Disease_freq: "",
+    });
+
+    setAgeValue("");
+    setInputValue("");
+    setResponseComponent(false);
+  }
+
   const handleCheckReport = () => {
     // Check if the entered disease is in the validDiseases array
     if (!validDiseases.includes(inputValue)) {
@@ -273,219 +292,228 @@ function LeftForm() {
      };
 
      console.log(requestData);
+     console.log(formData)
 
-     setFormData({
-       Fever: "",
-       Cough: "",
-       Fatigue: "",
-       Difficulty_Breathing: "",
-       Age: 0,
-       Gender: "",
-       Blood_Pressure: "",
-       Cholesterol_Level: "",
-       Disease_freq: "",
-     });
+     
+
+     setFormChanged(false);
+     setResponseComponent(true)
+
+     
 
      setAgeError("");
      setDiseaseError("");
 
-     setAgeValue("");
-     setInputValue("");
-
-     setFormChanged(false);
+     
   };
 
   return (
-    <div className={styles.LeftForm}>
-      <div>
-        <div>
-          <h3>Do you have Fever?</h3>
+    <>
+      {responseComponent ? (
+        <Response
+          Fever={formData.Fever}
+          handleResponse={handleResponse}
+          Cough={formData.Cough}
+          Fatigue={formData.Fatigue}
+          Difficulty_Breathing={formData.Difficulty_Breathing}
+          Age={ageValue}
+          Gender={formData.Gender}
+          Blood_Pressure={formData.Blood_Pressure}
+          Cholesterol_Level={formData.Cholesterol_Level}
+          Disease_freq={inputValue}
+        />
+      ) : (
+        <div className={styles.LeftForm}>
           <div>
-            {/* <button>Yes</button>
-            <button>No</button> */}
-            {Fever.map((Fever) => (
-              <button
-                key={Fever}
-                onClick={() => handleButtonSelect("Fever", Fever)}
-                className={
-                  formData.Fever === Fever
-                    ? `${styles.active}`
-                    : styles.formButton
-                }
-              >
-                {Fever}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3>Do you have Cough?</h3>
-          <div>
-            {Cough.map((Cough) => (
-              <button
-                key={Cough}
-                onClick={() => handleButtonSelect("Cough", Cough)}
-                className={
-                  formData.Cough === Cough
-                    ? `${styles.active}`
-                    : styles.formButton
-                }
-              >
-                {Cough}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3>Do you have Fatigue?</h3>
-          <div>
-            {Fatigue.map((Fatigue) => (
-              <button
-                key={Fatigue}
-                onClick={() => handleButtonSelect("Fatigue", Fatigue)}
-                className={
-                  formData.Fatigue === Fatigue
-                    ? `${styles.active}`
-                    : styles.formButton
-                }
-              >
-                {Fatigue}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3>Feeling difficulty in breathing?</h3>
-          <div>
-            {Difficulty_Breathing.map((Difficulty_Breathing) => (
-              <button
-                key={Difficulty_Breathing}
-                onClick={() =>
-                  handleButtonSelect(
-                    "Difficulty_Breathing",
-                    Difficulty_Breathing
-                  )
-                }
-                className={
-                  formData.Difficulty_Breathing === Difficulty_Breathing
-                    ? `${styles.active}`
-                    : styles.formButton
-                }
-              >
-                {Difficulty_Breathing}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3>Your age?</h3>
-          <div className={styles.input}>
-            <input
-              type="text"
-              value={ageValue}
-              onChange={handleAgeChange}
-              placeholder="Enter your age"
-            />
-            {ageValue && (
-              <div className={styles.clearInput} onClick={handleClearAge}>
-                <ImCross />
+            <div>
+              <h3>Do you have Fever?</h3>
+              <div>
+                {/* <button>Yes</button>
+    <button>No</button> */}
+                {Fever.map((Fever) => (
+                  <button
+                    key={Fever}
+                    onClick={() => handleButtonSelect("Fever", Fever)}
+                    className={
+                      formData.Fever === Fever
+                        ? `${styles.active}`
+                        : styles.formButton
+                    }
+                  >
+                    {Fever}
+                  </button>
+                ))}
               </div>
-            )}
-          </div>
-          {/* Display the age error message */}
-          {ageError && <p className={styles.error}>{ageError}</p>}
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <h3>What is your Gender?</h3>
-          <div>
-            {Gender.map((Gender) => (
-              <button
-                key={Gender}
-                onClick={() => handleButtonSelect("Gender", Gender)}
-                className={
-                  formData.Gender === Gender
-                    ? ` ${styles.active}`
-                    : styles.formButton
-                }
-              >
-                {Gender}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3>What is your Blood Pressure?</h3>
-          <div>
-            {Blood_Pressure.map((Blood_Pressure) => (
-              <button
-                key={Blood_Pressure}
-                onClick={() =>
-                  handleButtonSelect("Blood_Pressure", Blood_Pressure)
-                }
-                className={
-                  formData.Blood_Pressure === Blood_Pressure
-                    ? `${styles.active}`
-                    : styles.formButton
-                }
-              >
-                {Blood_Pressure}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3>What is your Colesterol level?</h3>
-          <div>
-            {Cholesterol_Level.map((Cholesterol_Level) => (
-              <button
-                key={Cholesterol_Level}
-                onClick={() =>
-                  handleButtonSelect("Cholesterol_Level", Cholesterol_Level)
-                }
-                className={
-                  formData.Cholesterol_Level === Cholesterol_Level
-                    ? ` ${styles.active}`
-                    : styles.formButton
-                }
-              >
-                {Cholesterol_Level}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3>Disease you're suspecting?</h3>
-          <div className={styles.input}>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="Enter disease name"
-            />
-            {inputValue && ( // Only show the clear button if inputValue is not empty
-              <div className={styles.clearInput} onClick={handleClearInput}>
-                <ImCross />
+            </div>
+            <div>
+              <h3>Do you have Cough?</h3>
+              <div>
+                {Cough.map((Cough) => (
+                  <button
+                    key={Cough}
+                    onClick={() => handleButtonSelect("Cough", Cough)}
+                    className={
+                      formData.Cough === Cough
+                        ? `${styles.active}`
+                        : styles.formButton
+                    }
+                  >
+                    {Cough}
+                  </button>
+                ))}
               </div>
-            )}
+            </div>
+            <div>
+              <h3>Do you have Fatigue?</h3>
+              <div>
+                {Fatigue.map((Fatigue) => (
+                  <button
+                    key={Fatigue}
+                    onClick={() => handleButtonSelect("Fatigue", Fatigue)}
+                    className={
+                      formData.Fatigue === Fatigue
+                        ? `${styles.active}`
+                        : styles.formButton
+                    }
+                  >
+                    {Fatigue}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3>Feeling difficulty in breathing?</h3>
+              <div>
+                {Difficulty_Breathing.map((Difficulty_Breathing) => (
+                  <button
+                    key={Difficulty_Breathing}
+                    onClick={() =>
+                      handleButtonSelect(
+                        "Difficulty_Breathing",
+                        Difficulty_Breathing
+                      )
+                    }
+                    className={
+                      formData.Difficulty_Breathing === Difficulty_Breathing
+                        ? `${styles.active}`
+                        : styles.formButton
+                    }
+                  >
+                    {Difficulty_Breathing}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3>Your age?</h3>
+              <div className={styles.input}>
+                <input
+                  type="text"
+                  value={ageValue}
+                  onChange={handleAgeChange}
+                  placeholder="Enter your age"
+                />
+                {ageValue && (
+                  <div className={styles.clearInput} onClick={handleClearAge}>
+                    <ImCross />
+                  </div>
+                )}
+              </div>
+              {/* Display the age error message */}
+              {ageError && <p className={styles.error}>{ageError}</p>}
+            </div>
           </div>
-          {diseaseError && <p className={styles.error}>{diseaseError}</p>}
+          <div>
+            <div>
+              <h3>What is your Gender?</h3>
+              <div>
+                {Gender.map((Gender) => (
+                  <button
+                    key={Gender}
+                    onClick={() => handleButtonSelect("Gender", Gender)}
+                    className={
+                      formData.Gender === Gender
+                        ? ` ${styles.active}`
+                        : styles.formButton
+                    }
+                  >
+                    {Gender}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3>What is your Blood Pressure?</h3>
+              <div>
+                {Blood_Pressure.map((Blood_Pressure) => (
+                  <button
+                    key={Blood_Pressure}
+                    onClick={() =>
+                      handleButtonSelect("Blood_Pressure", Blood_Pressure)
+                    }
+                    className={
+                      formData.Blood_Pressure === Blood_Pressure
+                        ? `${styles.active}`
+                        : styles.formButton
+                    }
+                  >
+                    {Blood_Pressure}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3>What is your Colesterol level?</h3>
+              <div>
+                {Cholesterol_Level.map((Cholesterol_Level) => (
+                  <button
+                    key={Cholesterol_Level}
+                    onClick={() =>
+                      handleButtonSelect("Cholesterol_Level", Cholesterol_Level)
+                    }
+                    className={
+                      formData.Cholesterol_Level === Cholesterol_Level
+                        ? ` ${styles.active}`
+                        : styles.formButton
+                    }
+                  >
+                    {Cholesterol_Level}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3>Disease you're suspecting?</h3>
+              <div className={styles.input}>
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  placeholder="Enter disease name"
+                />
+                {inputValue && ( // Only show the clear button if inputValue is not empty
+                  <div className={styles.clearInput} onClick={handleClearInput}>
+                    <ImCross />
+                  </div>
+                )}
+              </div>
+              {diseaseError && <p className={styles.error}>{diseaseError}</p>}
+            </div>
+            <div className={styles.submitButtonGroup}>
+              <button className={styles.report} onClick={handleCheckReport}>
+                Check Report
+              </button>
+              {formChanged && ( // Display the reset button if the form has changed
+                <button className={styles.reset} onClick={handleResetForm}>
+                  <FaAngleLeft />
+                  Reset
+                </button>
+              )}
+            </div>
+          </div>
         </div>
-        <div className={styles.submitButtonGroup}>
-          <button className={styles.report} onClick={handleCheckReport}>
-            Check Report
-          </button>
-          {formChanged && ( // Display the reset button if the form has changed
-            <button className={styles.reset} onClick={handleResetForm}>
-              <FaAngleLeft />
-              Reset
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

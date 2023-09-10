@@ -1,0 +1,84 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-left: 1px solid rgba(255, 255, 255, 0.27);
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+.Container h1{
+    font-size: 3em;
+    background: -webkit-linear-gradient(rgb(87, 149, 255), #0178ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+
+.Container h3{
+    width: 30em;
+    font-size: 1.3em;
+    font-weight: lighter;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.details{
+    display: flex;
+    gap: 5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+
+
+.segment{
+    display: flex;
+    gap: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 1.2em;
+    align-items: center;
+}
+
+.segment div{
+    background-color: blue;
+    padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 5em;
+}
+
+.prediction{
+    font-size: 1.5em;
+    margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        background-color: rgb(34, 255, 0);
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        width: fit-content;
+        font-weight: bold;
+        border-radius: 5px;
+        color: black;
+}
+
+.Container button{
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    gap: 0.5em;
+    padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 7px;
+    background: none;
+    border: 2px solid #ffffffb1;
+    color: #ffffffb1;
+    cursor: pointer;
+}
+
+.Container button:hover{
+    border: 2px solid white;
+        color: white;
+}
