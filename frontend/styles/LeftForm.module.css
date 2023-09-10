@@ -1,0 +1,153 @@
+.LeftForm{
+    display: flex;
+    align-items:flex-start;
+    gap: 3em;
+    padding: 2em;
+    
+}
+
+.LeftForm div{
+    width: 90%;
+}
+
+.report {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding: 0.5em;
+    background: rgb(174, 0, 29);
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: 10em;
+}
+
+.report:hover{
+    cursor: pointer;
+    background: rgb(194, 0, 32);
+
+}
+.LeftForm h3{
+    font-size: 1.2em;
+    padding-bottom: 1em;
+    padding-top: 1.5em;
+}
+
+
+.LeftForm div div div{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.formButton{
+    padding: 0.2em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border-radius: 5px;
+    outline: none;
+    border: 2px solid #ffffff6c;
+    background: none;
+    color: #ffffff6c;
+    font-size: 1.2em;
+}
+
+.active{
+    padding: 0.2em;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+        border-radius: 5px;
+        outline: none;
+        border: 2px solid blue;
+        background: blue;
+        color: white;
+        font-size: 1.2em;
+        cursor: pointer;
+}
+
+.formButton:hover{
+    cursor: pointer;
+    border: 2px solid #ffffffdc;
+    color: #ffffffdc;
+}
+
+
+.active:hover{
+    background-color: #0048ff;
+    color: white;
+    border: 2px solid #0048ff;
+}
+.LeftForm input{
+    outline: none;
+    border-radius: none;
+    border: none;
+    border-bottom: 0.5px solid #ffffff6c;
+    background: none;
+    padding-bottom: 0.5em;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    padding-right: 2em;
+}
+
+.LeftForm input::placeholder {
+    font-size: 1.2em;
+    background: none;
+    display: flex;
+        align-items: center;
+}
+
+.clearInput{
+    display: flex;
+    align-items:first baseline;
+    font-size: 0.7em;
+    padding-bottom: 1.7em;
+    border: none;
+    color: rgb(173, 173, 173);
+}
+
+.clearInput:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.error{
+    font-size: 0.9em;
+    color: rgb(255, 0, 85);
+    padding-top: 0.3em;
+    padding-bottom: 0.6em;
+}
+
+.reset{
+    padding-left: 2em;
+        padding-right: 2em;
+        padding: 0.5em;
+        background: none;
+        color: rgba(255, 255, 255, 0.584);
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+}
+
+.reset:hover{
+    color: white;
+    border: none;
+    border-color: none;
+    outline: none;
+}
+
+.submitButtonGroup{
+    display: flex;
+}
+
+
+
+
+
