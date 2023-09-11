@@ -280,15 +280,15 @@ function LeftForm() {
     }
 
      const requestData = {
-       Fever: formData.Fever,
-       Cough: formData.Cough,
-       Fatigue: formData.Fatigue,
-       Difficulty_Breathing: formData.Difficulty_Breathing,
-       Age: parseInt(ageValue), // Convert ageValue to an integer
-       Gender: formData.Gender,
-       Blood_Pressure: formData.Blood_Pressure,
-       Cholesterol_Level: formData.Cholesterol_Level,
-       Disease_freq: inputValue,
+       Fever: formData.Fever || "",
+       Cough: formData.Cough || "",
+       Fatigue: formData.Fatigue || "",
+       Difficulty_Breathing: formData.Difficulty_Breathing || "",
+       Age: parseInt(ageValue) || 0, // Convert ageValue to an integer
+       Gender: formData.Gender || "",
+       Blood_Pressure: formData.Blood_Pressure || "",
+       Cholesterol_Level: formData.Cholesterol_Level || "",
+       Disease_freq: inputValue || "",
      };
 
      console.log(requestData);
