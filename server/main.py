@@ -22,7 +22,7 @@ app = FastAPI()
 # Configure CORS (Cross-Origin Resource Sharing)
 # Replace the list of allowed origins with your specific requirements
 origins = [
-    "http://localhost"  # Allow requests from your frontend's development server
+    "http://localhost:3000"  # Allow requests from your frontend's development server
       # Replace with the actual domain of your frontend
 ]
 
