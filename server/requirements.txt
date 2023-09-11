@@ -8,7 +8,7 @@ python-jose[cryptography]
 passlib[bcrypt]
 mongoengine
 pyotp
-python-dotenv==0.17.1  # Specify the version here
+# python-dotenv==0.17.1  # Specify the version here
 passlib
 uuid
 pandas
