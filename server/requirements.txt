@@ -12,10 +12,7 @@ python-dotenv
 passlib
 uuid
 pandas
-datetime
-json
 jose
 dotenv
-os
 smtplib
 random
