@@ -294,16 +294,13 @@ function LeftForm() {
      };
 
       try {
-      const response = await fetch(
-        "https://charakaserver.onrender.com/predict_outcome",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        }
-      );
+      const response = await fetch("https://charakaserver.onrender.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
 
       const responseData = await response.json();
       console.log("Response Data:", responseData);
