@@ -14,6 +14,7 @@ function Response({
   Blood_Pressure,
   Cholesterol_Level,
   Disease_freq,
+  Outcome,
 }) {
   return (
     <div className={styles.Container}>
@@ -55,7 +56,11 @@ function Response({
           <div className={styles.segment}>
             Disease : <div>{Disease_freq}</div>
           </div>
-          <div className={styles.prediction}>Negative</div>
+          <div className={
+            Outcome==='Positive'
+            ?`${styles.redprediction}`
+            :styles.prediction
+          }>{Outcome}</div>
         </div>
       </div>
       <button onClick={handleResponse}>

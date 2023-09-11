@@ -170,7 +170,9 @@ function LeftForm() {
       setAgeError("*Age must be between 1 and 100");
     } else if (!Number.isInteger(Number(value))) {
       setAgeError("*Age must be a decimal Number");
-    } else {
+
+    }
+    else {
       setAgeError(""); // Clear the error message if age is valid
     }
   };
@@ -294,7 +296,7 @@ function LeftForm() {
      };
 
       try {
-      const response = await fetch("https://charakaserver.onrender.com", {
+      const response = await fetch("https://charakaserver.onrender.com/predict_outcome", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -303,10 +305,6 @@ function LeftForm() {
       });
 
       const responseData = await response.json();
-      console.log("Response Data:", responseData);
-
-      // Handle the response or any necessary logic here
-      // For example:
       if (response.ok) {
         setApiResponse(responseData);
         setApiError(null);
@@ -316,7 +314,8 @@ function LeftForm() {
       }
     } catch (error) {
       setApiResponse(null);
-      setApiError("An error occurred while making the API request.");
+      setApiError("Error Occured. Please Try again!");
+      return
     }
 
      
@@ -346,6 +345,7 @@ function LeftForm() {
           Blood_Pressure={formData.Blood_Pressure}
           Cholesterol_Level={formData.Cholesterol_Level}
           Disease_freq={inputValue}
+          Outcome={apiResponse.Outcome}
         />
       ) : (
         <div className={styles.LeftForm}>
@@ -523,6 +523,7 @@ function LeftForm() {
                 )}
               </div>
               {diseaseError && <p className={styles.error}>{diseaseError}</p>}
+              {apiError && <p className={styles.error}>{apiError}</p>}
             </div>
             <div className={styles.submitButtonGroup}>
               <button className={styles.report} onClick={handleCheckReport}>

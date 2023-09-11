@@ -14,6 +14,8 @@
         -webkit-text-fill-color: transparent;
 }
 
+
+
 .Container h3{
     width: 30em;
     font-size: 1.3em;
@@ -61,6 +63,21 @@
         font-weight: bold;
         border-radius: 5px;
         color: black;
+}
+
+.redprediction{
+    font-size: 1.5em;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        background-color: crimson;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        width: fit-content;
+        font-weight: bold;
+        border-radius: 5px;
+        color: rgb(255, 255, 255);
 }
 
 .Container button{
