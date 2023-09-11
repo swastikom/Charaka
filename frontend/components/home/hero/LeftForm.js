@@ -152,6 +152,8 @@ function LeftForm() {
   const [diseaseError, setDiseaseError] = useState("");
   const [formChanged, setFormChanged] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
+   const [apiResponse, setApiResponse] = useState(null);
+   const [apiError, setApiError] = useState(null);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -255,7 +257,7 @@ function LeftForm() {
     setResponseComponent(false);
   }
 
-  const handleCheckReport = () => {
+  const handleCheckReport = async () => {
     // Check if the entered disease is in the validDiseases array
     if (!validDiseases.includes(inputValue)) {
       setDiseaseError("* Disease does not exist, Please Check About section!");
@@ -291,8 +293,34 @@ function LeftForm() {
        Disease_freq: inputValue || "",
      };
 
-     console.log(requestData);
-     console.log(formData)
+      try {
+      const response = await fetch(
+        "https://charakaserver.onrender.com/predict_outcome",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
+
+      const responseData = await response.json();
+      console.log("Response Data:", responseData);
+
+      // Handle the response or any necessary logic here
+      // For example:
+      if (response.ok) {
+        setApiResponse(responseData);
+        setApiError(null);
+      } else {
+        setApiResponse(null);
+        setApiError(responseData.error);
+      }
+    } catch (error) {
+      setApiResponse(null);
+      setApiError("An error occurred while making the API request.");
+    }
 
      
 
