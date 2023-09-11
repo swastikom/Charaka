@@ -1,6 +1,7 @@
 # Main Imports
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from mongoengine import connect
 
 # Routes Import
@@ -16,6 +17,23 @@ from routes.item import router as item_router
 # Running FastAPI app
 
 app = FastAPI()
+
+
+# Configure CORS (Cross-Origin Resource Sharing)
+# Replace the list of allowed origins with your specific requirements
+origins = [
+    "http://localhost",  # Allow requests from your frontend's development server
+    "https://yourfrontend.com",  # Replace with the actual domain of your frontend
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # You can specify specific HTTP methods if needed
+    allow_headers=["*"],  # You can specify specific headers if needed
+)
+
 
 connect(db='charaka', host='localhost', port=27017)
 

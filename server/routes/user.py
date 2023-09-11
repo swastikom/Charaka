@@ -3,7 +3,7 @@ from jose import jwt, JWTError
 from enum import Enum
 from email_validator import validate_email, EmailNotValidError
 from mongoengine import DoesNotExist
-from model.user import NewUser, NameUpdateRequest, EmailUpdateRequest
+from model.user import NewUser, EmailUpdateRequest
 from functions.auth import oauth2_scheme, SECRET_KEY, ALGORITHM, get_password_hash
 from schemas.user import User
 import json
@@ -42,10 +42,8 @@ def signup(new_user: NewUser):
     hashed_password = get_password_hash(password)
     
     user_signup = User(
-        name=new_user.name,
-        password=hashed_password,
         email=new_user.email,
-        country=new_user.country
+        password=hashed_password,
         )
 
     try:
@@ -62,10 +60,6 @@ def signup(new_user: NewUser):
     saved_user = json.loads(user_signup.to_json())
     return {"saved User": saved_user}
 
-
-@router.get('/', tags=['Home'])
-def home():
-    return {"message": "Let's make it green!"}
 
 
 @router.get("/current_user", tags=[Tags.users])
@@ -91,18 +85,6 @@ async def delete_user(token: str = Depends(oauth2_scheme)):
     except DoesNotExist:
         raise HTTPException(status_code=404, detail='User not found')
 
-
-@router.put('/user/update/name', tags=[Tags.users])
-async def update_Name(name: NameUpdateRequest, token: str = Depends(oauth2_scheme)):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email = payload.get("sub")
-        user = User.objects.get(email=email)
-        user.name = name.name
-        user.save()
-        return {'message': 'Name Updated Successfully !'}
-    except DoesNotExist:
-        raise HTTPException(status_code=404, detail='User not found')
 
 
 @router.put('/user/update/email', tags=[Tags.users])
