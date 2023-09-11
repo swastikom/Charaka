@@ -14,5 +14,4 @@ uuid
 pandas
 jose
 python-dotenv
-smtplib
 random
