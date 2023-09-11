@@ -13,6 +13,6 @@ passlib
 uuid
 pandas
 jose
-dotenv
+python-dotenv
 smtplib
 random
