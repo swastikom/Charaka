@@ -22,8 +22,8 @@ app = FastAPI()
 # Configure CORS (Cross-Origin Resource Sharing)
 # Replace the list of allowed origins with your specific requirements
 origins = [
-    "http://localhost",  # Allow requests from your frontend's development server
-    "https://yourfrontend.com",  # Replace with the actual domain of your frontend
+    "http://localhost"  # Allow requests from your frontend's development server
+      # Replace with the actual domain of your frontend
 ]
 
 app.add_middleware(
