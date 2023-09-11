@@ -8,11 +8,11 @@ python-jose[cryptography]
 passlib[bcrypt]
 mongoengine
 pyotp
-python-dotenv
+python-dotenv==0.17.1  # Specify the version here
 passlib
 uuid
 pandas
 jose
-python-dotenv==0.17.1
+dotenv
 smtplib
 random
