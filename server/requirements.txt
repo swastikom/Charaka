@@ -16,3 +16,4 @@ jose
 python-dotenv
 email_validator
 python-multipart
+scikit-learn
