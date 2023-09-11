@@ -9,6 +9,13 @@ passlib[bcrypt]
 mongoengine
 pyotp
 python-dotenv
-geopy
 passlib
 uuid
+pandas
+datetime
+json
+jose
+dotenv
+os
+smtplib
+random
