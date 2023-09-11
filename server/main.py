@@ -19,19 +19,16 @@ from routes.item import router as item_router
 app = FastAPI()
 
 
-# Configure CORS (Cross-Origin Resource Sharing)
-# Replace the list of allowed origins with your specific requirements
 origins = [
-    "http://localhost:3000"  # Allow requests from your frontend's development server
-      # Replace with the actual domain of your frontend
+    "http://localhost:3000",  
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # You can specify specific HTTP methods if needed
-    allow_headers=["*"],  # You can specify specific headers if needed
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
