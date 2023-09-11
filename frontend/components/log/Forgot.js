@@ -135,13 +135,13 @@ function Forgot() {
           <div className={styles.base_login}>
             <h3>Forgot Password?</h3>
             <div className={styles.input_segment}>
-              <MdOutlineAlternateEmail />
               <input
                 type="text"
                 value={mailValue}
                 onChange={handleMailChange}
                 placeholder="Enter your email" // Changed placeholder text
               />
+              <MdOutlineAlternateEmail />
               {mailValue && (
                 <RxCross1 className={styles.cross} onClick={clearMailValue} />
               )}

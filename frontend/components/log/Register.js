@@ -5,7 +5,6 @@ import styles from "@/styles/base.module.css";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
-import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 
 function Register() {
