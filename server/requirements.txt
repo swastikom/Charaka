@@ -14,3 +14,4 @@ uuid
 pandas
 jose
 python-dotenv
+email_validator
