@@ -7,6 +7,7 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import {FcGoogle} from "react-icons/fc"
 import Link from "next/link";
+import {signIn} from 'next-auth/react'
 
 function Login() {
   const [mailValue, setMailValue] = useState(""); 
@@ -107,7 +108,7 @@ function Login() {
             <button className={styles.signin}
             onClick={handleSignIn}>Sign in</button>
             <p>or</p>
-            <button className={styles.Google}>
+            <button className={styles.Google} onClick={()=>signIn("google")}>
               <FcGoogle />
               Sign in with Google
             </button>

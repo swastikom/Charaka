@@ -32,7 +32,7 @@ app.add_middleware(
 )
 
 
-connect(db='charaka', host='localhost', port=27017)
+connect(host='mongodb+srv://Swastikom:e3qAoLweimTfsfDc@cluster0.z4dpept.mongodb.net/charaka_db')
 
 app.include_router(prediction_router)
 app.include_router(user_router)
