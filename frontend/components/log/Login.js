@@ -7,7 +7,9 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import {FcGoogle} from "react-icons/fc"
 import Link from "next/link";
-import {signIn} from 'next-auth/react'
+import {signIn,useSession} from 'next-auth/react'
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const [mailValue, setMailValue] = useState(""); 
@@ -16,6 +18,24 @@ function Login() {
    const [showPassword, setShowPassword] = useState(false);
 
    const [error,setError] = useState("")
+
+   
+   const { status } = useSession();
+
+   const router = useRouter();
+
+   useEffect(() => {
+     // Move session status check and redirection logic here
+     if (status === "authenticated") {
+       router.push("/dashboard"); // Use "/" before "dashboard" if it's the root route
+     } else if(status==="unauthenticated"){
+      router.push("/Login")
+      
+     }
+     else if(null){
+      setError("* User not Exists Register!");
+     }
+   }, [status, router]);
 
   const handlePasswordChange = (e) => {
     setPasswordValue(e.target.value);
@@ -65,7 +85,14 @@ function Login() {
       setPasswordValue("")
       setError("")
     }
-  }
+
+    
+    }
+    const handleGoogle = () => {
+      signIn("google");
+      
+    };
+  
 
   return (
     <>
@@ -108,7 +135,7 @@ function Login() {
             <button className={styles.signin}
             onClick={handleSignIn}>Sign in</button>
             <p>or</p>
-            <button className={styles.Google} onClick={()=>signIn("google")}>
+            <button className={styles.Google} onClick={handleGoogle}>
               <FcGoogle />
               Sign in with Google
             </button>

@@ -1,7 +1,8 @@
 import { connectMongoDB } from "@/lib/mongodb";
-import User from "@/models/user";
+import User from '@/models/user'
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+// import { useRouter } from "next/router";
 
 const authOptions = {
   providers: [
@@ -12,27 +13,33 @@ const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
+      console.log("signIn callback triggered");
       if (account.provider === "google") {
-        const { name, email } = user;
+        const { email } = user;
         try {
           await connectMongoDB();
           const userExists = await User.findOne({ email });
+          console.log(userExists);
 
           if (!userExists) {
-            const res = await fetch("http://localhost:3000/api/user", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                name,
-                email,
-              }),
-            });
+            // console.log("User Not exists")
+            // const res = await fetch("http://localhost:3000/api/user", {
+            //   method: "POST",
+            //   headers: {
+            //     "Content-Type": "application/json",
+            //   },
+            //   body: JSON.stringify({
+            //     email,
+            //   }),
 
-            if (res.ok) {
-              return user;
-            }
+            // });
+
+            // if (res.ok) {
+            //   console.log("USER EXISTS");
+            //   return user;
+            // }
+           
+            console.log("User not exists "); // Perform client-side redirect
           }
         } catch (error) {
           console.log(error);
