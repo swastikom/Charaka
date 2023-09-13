@@ -16,6 +16,7 @@ class Item(EmbeddedDocument):
 
     
 class User(Document):
+    name = StringField()
     email = EmailField()
     password = StringField()
     itemList = ListField(EmbeddedDocumentField(Item))
