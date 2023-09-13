@@ -11,16 +11,173 @@
     justify-content: center;
 }
 
-.base_authtype{
+.base_authtype {
     height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.input_segment{
+.input_segment {
     display: flex;
     align-items: center;
+}
+
+.input_segment MdOutlineAlternateEmail {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+
+.input_segment input {
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 2px solid #ffffff3f;
+    color: white;
+    padding: 0.4em;
+    font-size: 1em;
+    width: 13em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+
+
+.base_login {
+    border: 1px solid #ffffff3f;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5em;
+    font-size: 1em;
+}
+
+.base_login h2 {
+    padding-bottom: 1em;
+    padding-top: 1em;
+    font-size: 2em;
+    color: rgb(65, 65, 255);
+}
+
+.base_login h3 {
+    font-size: 1.7em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    color: rgb(65, 65, 255);
+}
+
+.otp {
+    border: 1px solid #ffffff3f;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5em;
+}
+
+.otp h4 {
+    font-size: 1.5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    color: rgb(65, 65, 255);
+}
+
+.goback {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    /* padding: 0.5em;
+            padding-left: 1em;
+            padding-right: 1em; */
+    width: 16em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    background-color: crimson;
+    color: white;
+}
+
+.goback:hover {
+    background-color: rgb(183, 24, 56);
+}
+
+.signin {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    margin-top: 3em;
+    margin-bottom: 0.5em;
+    /* padding: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em; */
+    width: 16em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    background-color: blue;
+    color: white;
+}
+
+.signin:hover {
+    background-color: rgb(31, 31, 255);
+}
+
+.Google {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    font-weight: normal;
+    /* padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em; */
+    margin-top: 0.5em;
+    width: 16em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    margin-bottom: 1em;
+}
+
+.cross {
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+
+.linkSegment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: rgb(82, 82, 255);
+    font-size: 0.9em;
+    width: 100%;
+}
+
+.error {
+    color: crimson;
+    font-size: 0.9em;
+    font-weight: light;
 }
