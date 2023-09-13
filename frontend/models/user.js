@@ -35,14 +35,17 @@ const itemSchema = new Schema({
 
 const userSchema = new mongoose.Schema(
   {
+    name: String,
     email: {
       type: String,
       required: true,
     },
     password: {
       type: String,
+      required: true,
     },
     itemList: [itemSchema],
+    country: String,
     password_reset_otp: String,
   },
   {
