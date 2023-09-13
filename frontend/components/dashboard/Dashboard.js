@@ -9,7 +9,7 @@ function Dashboard() {
       return (
         <div className={styles.page}>
           
-          <button onClick={handleGoogleSignout}>Signout</button>
+          <button >Signout</button>
         </div>
       );
     }

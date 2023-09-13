@@ -8,6 +8,7 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import {FcGoogle} from "react-icons/fc"
 import Link from "next/link";
+import axios from "axios";
 
 function Login() {
   const [mailValue, setMailValue] = useState("");
@@ -55,6 +56,10 @@ function Login() {
     } else if (passwordValue.length < 8) {
       setError("* Password is too small");
     } else {
+
+
+
+
       setMailValue("");
       setPasswordValue("");
       setError("");
