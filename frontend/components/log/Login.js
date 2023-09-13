@@ -9,6 +9,7 @@ import { RxCross1 } from "react-icons/rx";
 import {FcGoogle} from "react-icons/fc"
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const [mailValue, setMailValue] = useState("");
@@ -18,7 +19,7 @@ function Login() {
 
   const [error, setError] = useState("");
   // Google Handler function
- 
+  const router = useRouter()
 
   const handlePasswordChange = (e) => {
     setPasswordValue(e.target.value);
@@ -46,7 +47,7 @@ function Login() {
     return pattern.test(email);
   }
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     if (mailValue == "" || passwordValue == "") {
       setError("* All fields are required!");
       return;
@@ -58,8 +59,7 @@ function Login() {
     } else {
 
 
-
-
+      
       setMailValue("");
       setPasswordValue("");
       setError("");
