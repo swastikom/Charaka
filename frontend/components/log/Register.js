@@ -6,6 +6,7 @@ import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -18,6 +19,8 @@ function Register() {
 
   const [error, setError] = useState("");
 
+   const router = useRouter();
+   
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -100,9 +103,8 @@ function Register() {
       });
 
       if (res.ok) {
-        const form = e.target;
-        form.reset();
-        router.push("/");
+        console.log(res);
+        router.push("/Login");
       } else {
         console.log("User registration failed.");
       }
