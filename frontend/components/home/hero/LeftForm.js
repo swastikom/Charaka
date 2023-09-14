@@ -152,8 +152,8 @@ function LeftForm() {
   const [diseaseError, setDiseaseError] = useState("");
   const [formChanged, setFormChanged] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
-   const [apiResponse, setApiResponse] = useState(null);
-   const [apiError, setApiError] = useState(null);
+  const [apiResponse, setApiResponse] = useState(null);
+  const [apiError, setApiError] = useState(null);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -170,33 +170,27 @@ function LeftForm() {
       setAgeError("*Age must be between 1 and 100");
     } else if (!Number.isInteger(Number(value))) {
       setAgeError("*Age must be a decimal Number");
-
-    }
-    else {
+    } else {
       setAgeError(""); // Clear the error message if age is valid
     }
   };
 
-
- const handleButtonSelect = (fieldName, selectedValue) => {
-   setFormData({ ...formData, [fieldName]: selectedValue });
-   setButtonClicked(true);
-   setFormChanged(true);
-  
- };
+  const handleButtonSelect = (fieldName, selectedValue) => {
+    setFormData({ ...formData, [fieldName]: selectedValue });
+    setButtonClicked(true);
+    setFormChanged(true);
+  };
 
   const handleClearInput = () => {
     setInputValue("");
     setDiseaseError("");
-     if (buttonClicked) {
-       setFormChanged(true); // Reset formChanged only if a button has been clicked
-     }
-     else if(ageValue!=""){
-      setFormChanged(true); 
-     }
-     else{
+    if (buttonClicked) {
+      setFormChanged(true); // Reset formChanged only if a button has been clicked
+    } else if (ageValue != "") {
+      setFormChanged(true);
+    } else {
       setFormChanged(false);
-     }
+    }
   };
 
   const handleClearAge = () => {
@@ -235,13 +229,11 @@ function LeftForm() {
     setAgeValue("");
     setInputValue("");
 
-    
     setFormChanged(false);
     // Reset the formChanged state to false
-    
   };
 
-  const handleResponse = () =>{
+  const handleResponse = () => {
     setFormData({
       Fever: "",
       Cough: "",
@@ -257,7 +249,7 @@ function LeftForm() {
     setAgeValue("");
     setInputValue("");
     setResponseComponent(false);
-  }
+  };
 
   const handleCheckReport = async () => {
     // Check if the entered disease is in the validDiseases array
@@ -283,26 +275,29 @@ function LeftForm() {
       return; // Exit the function without further processing
     }
 
-     const requestData = {
-       Fever: formData.Fever || "",
-       Cough: formData.Cough || "",
-       Fatigue: formData.Fatigue || "",
-       Difficulty_Breathing: formData.Difficulty_Breathing || "",
-       Age: parseInt(ageValue) || 0, // Convert ageValue to an integer
-       Gender: formData.Gender || "",
-       Blood_Pressure: formData.Blood_Pressure || "",
-       Cholesterol_Level: formData.Cholesterol_Level || "",
-       Disease_freq: inputValue || "",
-     };
+    const requestData = {
+      Fever: formData.Fever || "",
+      Cough: formData.Cough || "",
+      Fatigue: formData.Fatigue || "",
+      Difficulty_Breathing: formData.Difficulty_Breathing || "",
+      Age: parseInt(ageValue) || 0, // Convert ageValue to an integer
+      Gender: formData.Gender || "",
+      Blood_Pressure: formData.Blood_Pressure || "",
+      Cholesterol_Level: formData.Cholesterol_Level || "",
+      Disease_freq: inputValue || "",
+    };
 
-      try {
-      const response = await fetch("https://charakaserver.onrender.com/predict_outcome", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+    try {
+      const response = await fetch(
+        "https://charakaserver.onrender.com/predict_outcome",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
 
       const responseData = await response.json();
       if (response.ok) {
@@ -315,20 +310,14 @@ function LeftForm() {
     } catch (error) {
       setApiResponse(null);
       setApiError("Error Occured. Please Try again!");
-      return
+      return;
     }
 
-     
+    setFormChanged(false);
+    setResponseComponent(true);
 
-     setFormChanged(false);
-     setResponseComponent(true)
-
-     
-
-     setAgeError("");
-     setDiseaseError("");
-
-     
+    setAgeError("");
+    setDiseaseError("");
   };
 
   return (

@@ -6,7 +6,7 @@ function Hero() {
   return (
     <div className={styles.base_hero}>
       <HeroLeft />
-      <HeroRight />
+      <HeroRight  />
     </div>
   );
 }

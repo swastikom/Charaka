@@ -5,7 +5,7 @@ import styles from '@/styles/HeroRight.module.css'
 function HeroRight() {
   return (
     <div className={styles.HeroRight}>
-      <LeftForm />
+      <LeftForm  />
     </div>
   );
 }
