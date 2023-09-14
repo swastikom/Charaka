@@ -10,18 +10,21 @@ import {FcGoogle} from "react-icons/fc"
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 
+import { useRouter } from "next/navigation";
+
 
 function Login() {
-  const [mailValue, setMailValue] = useState("");
+  const [email, setEmail] = useState("");
 
-  const [passwordValue, setPasswordValue] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const [error, setError] = useState("");
   
+  const router = useRouter();
 
   const handlePasswordChange = (e) => {
-    setPasswordValue(e.target.value);
+    setPassword(e.target.value);
   };
 
   const handleTogglePasswordVisibility = () => {
@@ -29,15 +32,15 @@ function Login() {
   };
   const handleMailChange = (event) => {
     const value = event.target.value;
-    setMailValue(value);
+    setEmail(value);
   };
 
-  const clearMailValue = () => {
-    setMailValue("");
+  const clearemail = () => {
+    setEmail("");
   };
 
-  const clearPasswordValue = () => {
-    setPasswordValue("");
+  const clearpassword = () => {
+    setPassword("");
   };
 
   function isValidEmail(email) {
@@ -47,21 +50,38 @@ function Login() {
   }
 
   const handleSignIn = async () => {
-    if (mailValue == "" || passwordValue == "") {
+    if (email == "" || password == "") {
       setError("* All fields are required!");
       return;
-    } else if (!isValidEmail(mailValue)) {
+    } else if (!isValidEmail(email)) {
       setError("* Invalid email");
       return;
-    } else if (passwordValue.length < 8) {
+    } else if (password.length < 8) {
       setError("* Password is too small");
     } else {
 
+       try {
+         const res = await signIn("credentials", {
+           email,
+           password,
+           redirect: false,
+         });
+         setEmail("");
+         setPassword("");
+         console.log(res)
+         if (res.error) {
+           setError("* Invalid Credentials");
+           return;
+         }
+         else{
+          router.push("/")
+         }
 
+       } catch (error) {
+         console.log(error);
+       }
       
-      setMailValue("");
-      setPasswordValue("");
-      setError("");
+      
     }
   };
 
@@ -73,24 +93,24 @@ function Login() {
           <div className={styles.input_segment}>
             <input
               type="text"
-              value={mailValue}
+              value={email}
               onChange={handleMailChange}
               placeholder="Enter your email" // Changed placeholder text
             />
-            {mailValue && (
-              <RxCross1 className={styles.cross} onClick={clearMailValue} />
+            {email && (
+              <RxCross1 className={styles.cross} onClick={clearemail} />
             )}
             <MdOutlineAlternateEmail />
           </div>
           <div className={styles.input_segment}>
             <input
               type={showPassword ? "text" : "password"}
-              value={passwordValue}
+              value={password}
               onChange={handlePasswordChange}
               placeholder="Enter your Password"
             />
-            {passwordValue && (
-              <RxCross1 className={styles.cross} onClick={clearPasswordValue} />
+            {password && (
+              <RxCross1 className={styles.cross} onClick={clearpassword} />
             )}
             {showPassword ? (
               <BsEyeSlashFill onClick={handleTogglePasswordVisibility} />
