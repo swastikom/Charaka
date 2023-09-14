@@ -8,9 +8,9 @@ import { RxCross1 } from "react-icons/rx";
 import Link from "next/link";
 
 function Register() {
-  const [mailValue, setMailValue] = useState("");
+  const [email, setEmail] = useState("");
 
-  const [passwordValue, setPasswordValue] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const [confirmPass, setConfirmPass] = useState("");
@@ -19,7 +19,7 @@ function Register() {
   const [error, setError] = useState("");
 
   const handlePasswordChange = (e) => {
-    setPasswordValue(e.target.value);
+    setPassword(e.target.value);
   };
 
   const handleConPasswordChange = (e) => {
@@ -35,15 +35,15 @@ function Register() {
   };
   const handleMailChange = (event) => {
     const value = event.target.value;
-    setMailValue(value);
+    setEmail(value);
   };
 
   const clearMailValue = () => {
-    setMailValue("");
+    setEmail("");
   };
 
   const clearPasswordValue = () => {
-    setPasswordValue("");
+    setPassword("");
   };
 
   const clearConPasswordValue = () => {
@@ -56,24 +56,61 @@ function Register() {
     return pattern.test(email);
   }
 
-  const handleSignIn = () => {
-    if (mailValue == "" || passwordValue == "") {
+  const handleRegister = async () => {
+    if (email == "" || password == "") {
       setError("* All fields are required!");
       return;
-    } else if (!isValidEmail(mailValue)) {
+    } else if (!isValidEmail(email)) {
       setError("* Invalid email");
       return;
-    } else if (passwordValue.length < 8) {
+    } else if (password.length < 8) {
       setError("* Password is too small");
       return
     }
-    else if(passwordValue!=confirmPass){
+    else if(password!=confirmPass){
         setError("*Confirm Password did'nt match!");
         return
     }
     else {
-      setMailValue("");
-      setPasswordValue("");
+
+      try {
+      const resUserExists = await fetch("api/userExists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const { user } = await resUserExists.json();
+
+      if (user) {
+        setError("* User already exists.");
+        return;
+      }
+       const res = await fetch("api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (res.ok) {
+        const form = e.target;
+        form.reset();
+        router.push("/");
+      } else {
+        console.log("User registration failed.");
+      }
+    } catch (error) {
+      console.log("Error during registration: ", error);
+    }
+      setEmail("");
+      setPassword("");
       setConfirmPass("")
       setError("");
       setShowPassword(false);
@@ -89,11 +126,11 @@ function Register() {
           <div className={styles.input_segment}>
             <input
               type="text"
-              value={mailValue}
+              value={email}
               onChange={handleMailChange}
               placeholder="Enter your email" // Changed placeholder text
             />
-            {mailValue && (
+            {email && (
               <RxCross1 className={styles.cross} onClick={clearMailValue} />
             )}
             <MdOutlineAlternateEmail />
@@ -101,11 +138,11 @@ function Register() {
           <div className={styles.input_segment}>
             <input
               type={showPassword ? "text" : "password"}
-              value={passwordValue}
+              value={password}
               onChange={handlePasswordChange}
               placeholder="Create Password"
             />
-            {passwordValue && (
+            {password && (
               <RxCross1 className={styles.cross} onClick={clearPasswordValue} />
             )}
             {showPassword ? (
@@ -134,7 +171,7 @@ function Register() {
             )}
           </div>
           {error && <p className={styles.error}>{error}</p>}
-          <button className={styles.signin} onClick={handleSignIn}>
+          <button className={styles.signin} onClick={handleRegister}>
             Sign in
           </button>
           <div className={styles.linkSegment}>
