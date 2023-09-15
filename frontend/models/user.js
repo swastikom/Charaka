@@ -28,9 +28,10 @@ const userSchema = new Schema(
     itemList: [itemSchema],
     otp: {
       type: String,
+      default: "1234",
     },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 
 const User = models.User || mongoose.model("User", userSchema);

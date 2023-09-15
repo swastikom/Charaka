@@ -22,8 +22,9 @@ def generate_otp():
 
 def get_saved_otp_from_database(email: str):
     try:
-        user = User.objects.get(email=email)
-        return user.password_reset_otp
+        user = User.objects.only('otp').get(email=email)
+    
+        return user.otp
     except User.DoesNotExist:
         return None
 

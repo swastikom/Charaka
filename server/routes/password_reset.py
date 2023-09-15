@@ -24,7 +24,7 @@ def request_password_reset(email: EmailStr):
             status_code=404, detail="User with specified email not found")
 
     otp = generate_otp()
-    user.password_reset_otp = otp  # Save the OTP in the user object
+    user.otp = otp  # Save the OTP in the user object
     user.save()  # Save the user object to update the OTP
 
     message = f"Your OTP for password reset is: {otp}"
@@ -44,7 +44,7 @@ def verify_password_reset(payload: OTPVerifyPayload, email: EmailStr, password_p
     if otp == saved_otp:
         otp = "NULL"
         user = User.objects.get(email=email)
-        user.password_reset_otp = otp
+        user.otp = otp
 
         new_password = password_payload.newPassword
         confirm_password = password_payload.confirmNewPassword

@@ -27,7 +27,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+connect(db='charaka_base', host='localhost', port=27017)
 
 app.include_router(prediction_router)
 app.include_router(password_reset_router)

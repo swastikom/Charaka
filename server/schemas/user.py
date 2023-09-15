@@ -1,4 +1,4 @@
-from mongoengine import Document, EmbeddedDocument, EmbeddedDocumentField, IntField, StringField, ListField, EmailField
+from mongoengine import Document, EmbeddedDocument, EmbeddedDocumentField, IntField, StringField, ListField, EmailField, DateTimeField
 
 
 class Item(EmbeddedDocument):
@@ -14,13 +14,14 @@ class Item(EmbeddedDocument):
     Disease_freq = StringField()
     outcome = StringField()
 
-    
+
 class User(Document):
-    name = StringField()
-    email = EmailField()
+    email = EmailField(required=True)
     password = StringField()
     itemList = ListField(EmbeddedDocumentField(Item))
-    password_reset_otp = StringField()
-    
-
-
+    otp = StringField()
+    createdAt = DateTimeField()
+    updatedAt = DateTimeField()
+    meta = {
+        'collection': 'users'
+    }
