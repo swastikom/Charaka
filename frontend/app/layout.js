@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
+import Footer from "@/components/home/Footer";
 import Navbar from "@/components/Navbar"
 import {NextAuthProvider} from "@/app/Providers";
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <NextAuthProvider>
           <Navbar />
           {children}
+          <Footer/>
         </NextAuthProvider>
       </body>
     </html>
