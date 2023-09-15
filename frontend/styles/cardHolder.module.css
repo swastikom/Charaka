@@ -2,36 +2,35 @@
     /* padding: 10px; */
     height: 35%;
     width: 50%;
-    margin-left: 60px;
     
 }
 .card_middle{
     height: 35%;
     width: 50%;
-    margin-left: 60px;
     text-align: right;
 }
 .c0{
     /* margin-left: 20px;
     margin-right: 20px; */
-    align-items: center;
     justify-content: center;
     display: flex;
+    align-items: center;
+    gap: 5em;
     /* margin-top: 30px; */
     width: 100%;
-    padding-top: 3em;
-    padding-bottom: 3em;
+    padding-top: 6em;
+    padding-bottom: 6em;
 }
 
 .c1{
-    margin-left: -60px;
     /* margin-right: 20px;  */
     display: flex;
-    margin-top: 80px;
     width: 100%;
     gap: 5em;
-    padding-top: 3em;
-    padding-bottom: 3em;
+    padding-top: 6em;
+    padding-bottom: 6em;
+    align-items: center;
+    justify-content: center;
     /* transform: translateY(40%);
     transition: all 1s ease-out; */
 }
@@ -39,11 +38,13 @@
      /* margin-left: -60px;  */
     /* margin-right: 20px; */ 
     display: flex;
-    margin-top: 135px;
     width: 100%;
-    margin-bottom: 50px;
+    padding-top: 6em;
+    gap: 5em;
     /* padding-top: 3em; */
     padding-bottom: 6em;
+    align-items: center;
+    justify-content: center;
 }
 .title{
     margin-bottom: 15px;

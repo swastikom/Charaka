@@ -7,7 +7,7 @@ from mongoengine import connect
 # Routes Import
 
 from routes.prediction import router as prediction_router
-
+from routes.password_reset import router as password_reset_router
 
 
 # Running FastAPI app
@@ -30,4 +30,4 @@ app.add_middleware(
 
 
 app.include_router(prediction_router)
-
+app.include_router(password_reset_router)

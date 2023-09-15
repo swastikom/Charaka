@@ -22,7 +22,6 @@ function page() {
   return (
     <div className={styles.page}>
       <Forgot />
-      <Footer />
     </div>
   );
 }

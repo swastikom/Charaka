@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image';
-
+import Footer from '../home/Footer';
 import base from '@/styles/base.module.css';
 // import styles from "@/styles/base.module.css";
 import styles from "@/styles/cardHolder.module.css";
@@ -25,17 +25,36 @@ const cardInfo = [
 function About() {
   
   return (
-    
-    <div className={base.base}>
-      {/* <h1 className={styles.head}>About <span className={styles.h1_span}>Us</span></h1> */}
-      
-      <div className={styles.c0}><Image src="/conv_pic.png" height={450} width={450}></Image><Card title1 = {cardInfo[0].title1} title2 = {cardInfo[0].title2} des = {cardInfo[0].des} /> </div>
-      <div className={styles.c1}><CardMiddle title1 = {cardInfo[1].title1} title2 = {cardInfo[1].title2} des = {cardInfo[1].des} /> <Image src="/AI_tree.png" height={450} width={450}/></div>
-      <div className={styles.c2}><Image src="/AI_doctor.jpg" height={450} width={450}></Image><Card title1 = {cardInfo[2].title1} title2 = {cardInfo[2].title2} des = {cardInfo[2].des} /> </div>
-    
+      <div className={base.base}>
+        {/* <h1 className={styles.head}>About <span className={styles.h1_span}>Us</span></h1> */}
+
+        <div className={styles.c0}>
+          <Image src="/conv_pic.png" height={450} width={450}></Image>
+          <Card
+            title1={cardInfo[0].title1}
+            title2={cardInfo[0].title2}
+            des={cardInfo[0].des}
+          />{" "}
+        </div>
+        <div className={styles.c1}>
+          <CardMiddle
+            title1={cardInfo[1].title1}
+            title2={cardInfo[1].title2}
+            des={cardInfo[1].des}
+          />{" "}
+          <Image src="/AI_tree.png" height={450} width={450} />
+        </div>
+        <div className={styles.c2}>
+          <Image src="/AI_doctor.jpg" height={450} width={450}></Image>
+          <Card
+            title1={cardInfo[2].title1}
+            title2={cardInfo[2].title2}
+            des={cardInfo[2].des}
+          />{" "}
+        </div>
       </div>
-      
-  )
+    
+  );
 }
 
 export default About;

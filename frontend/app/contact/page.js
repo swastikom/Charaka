@@ -6,7 +6,6 @@ function page() {
   return (
     <div className={styles.page}>
       <Contact/>
-      <Footer />
     </div>
   );
 }
