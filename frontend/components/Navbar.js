@@ -4,6 +4,7 @@ import styles from "@/styles/navbar.module.css";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { BsHeartPulseFill } from "react-icons/bs";
 
 function Navbar() {
   const isServer = typeof window === "undefined";
@@ -36,6 +37,7 @@ function Navbar() {
   return (
     <nav className={styles.container}>
       <span className={styles.logo}>
+        <BsHeartPulseFill />
         {!isSmallScreen && (
           <Link href="/">
             <h1>Charaka</h1>

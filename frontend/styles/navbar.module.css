@@ -11,12 +11,22 @@
     height: 4.5em;
 }
 
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: #5795ff;
+}
+
+
 .container h1 {
-    background: -webkit-linear-gradient(rgb(87, 149, 255), #0178ff);
+    background: -webkit-linear-gradient(#5795ff, #0178ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-style: normal;
     font-weight: 700;
+
+    
 }
 
 .links {
