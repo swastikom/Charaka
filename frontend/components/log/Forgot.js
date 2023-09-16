@@ -7,6 +7,7 @@ import { BsFillKeyFill } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import Link from "next/link";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
 function Forgot() {
   const [email, setEmail] = useState("");
@@ -18,6 +19,8 @@ function Forgot() {
   const [confirmPass, setConfirmPass] = useState("");
   const [showConPassword, setShowConPassword] = useState(false);
   const [error, setError] = useState("");
+
+  const router = useRouter()
 
   const handlePasswordChange = (e) => {
     setPasswordValue(e.target.value);
@@ -139,7 +142,11 @@ function Forgot() {
     if (otp == "") {
       setOtpError("* OTP is required!");
       return;
-    } else if (!isValidOtp(otp)) {
+    } else if(otp.length>4){
+      setOtpError("* OTP must be of 4 digits");
+      return;
+    }
+    else if (!isValidOtp(otp)) {
       setOtpError("* OTP is Invalid!");
     } else {
       const otpVerifyData = {
@@ -200,7 +207,7 @@ function Forgot() {
 const passResetData = {
   email: otpmail,
   newPassword: passwordValue,
-  confirmPass: confirmNewPassword
+  confirmNewPassword: confirmPass,
 };
 
       try {
@@ -227,6 +234,8 @@ const passResetData = {
       setError("");
       setShowPassword(false);
       setShowConPassword(false);
+
+      router.push("/Login")
     }
   };
 
@@ -270,7 +279,7 @@ const passResetData = {
               />
               {otp && <RxCross1 className={styles.cross} onClick={clearotp} />}
             </div>
-            {otpError && <p className={styles.error}>{error}</p>}
+            {otpError && <p className={styles.error}>{otpError}</p>}
             <button className={styles.signin} onClick={handleOtp}>
               Submit
             </button>
