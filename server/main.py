@@ -27,7 +27,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-connect(db='charaka_base', host='localhost', port=27017)
+MONGODB_URI = "mongodb+srv://Swastikom:e3qAoLweimTfsfDc@cluster0.z4dpept.mongodb.net/charaka_db"
+connect(host=MONGODB_URI)
 
 app.include_router(prediction_router)
 app.include_router(password_reset_router)
