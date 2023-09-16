@@ -9,62 +9,58 @@ import Link from "next/link";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 function Forgot() {
-  const [mailValue, setMailValue] = useState("");
-    const [otpValue, setOtpValue] = useState("");
-     const [passwordValue, setPasswordValue] = useState("");
-     const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [otpValue, setOtpValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-     const [confirmPass, setConfirmPass] = useState("");
-     const [showConPassword, setShowConPassword] = useState(false);
-     const [error, setError] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [showConPassword, setShowConPassword] = useState(false);
+  const [error, setError] = useState("");
 
-     const handlePasswordChange = (e) => {
-       setPasswordValue(e.target.value);
-     };
-
-     const handleConPasswordChange = (e) => {
-       setConfirmPass(e.target.value);
-     };
-
-     const handleTogglePasswordVisibility = () => {
-       setShowPassword(!showPassword);
-     };
-
-     const handleToggleConPasswordVisibility = () => {
-       setShowConPassword(!showConPassword);
-     };
-
-     const clearPasswordValue = () => {
-       setPasswordValue("");
-     };
-
-     const clearConPasswordValue = () => {
-       setConfirmPass("");
-     };
-  
-  
-
- const [forgotToggle,setForgotToggle] = useState(1)
-
-  
-  const handleMailChange = (event) => {
-    const value = event.target.value;
-    setMailValue(value);
+  const handlePasswordChange = (e) => {
+    setPasswordValue(e.target.value);
   };
 
-  const handleOtpChange = (e) =>{
-    const otpVal = e.target.value;
-    setOtpValue(otpVal)
-  }
+  const handleConPasswordChange = (e) => {
+    setConfirmPass(e.target.value);
+  };
 
-  const clearMailValue = () => {
-    setMailValue("");
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleToggleConPasswordVisibility = () => {
+    setShowConPassword(!showConPassword);
+  };
+
+  const clearPasswordValue = () => {
+    setPasswordValue("");
+  };
+
+  const clearConPasswordValue = () => {
+    setConfirmPass("");
+  };
+
+  const [forgotToggle, setForgotToggle] = useState(1);
+
+  const handleMailChange = (event) => {
+    const value = event.target.value;
+    setEmail(value);
+  };
+
+  const handleOtpChange = (e) => {
+    const otpVal = e.target.value;
+    setOtpValue(otpVal);
+  };
+
+  const clearemail = () => {
+    setEmail("");
   };
 
   const clearOtpValue = () => {
     setOtpValue("");
   };
-  
 
   function isValidEmail(email) {
     const pattern = /^[A-Za-z0-9._+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
@@ -72,54 +68,98 @@ function Forgot() {
     return pattern.test(email);
   }
 
-  const handleGetOTP = () => {
-    if (mailValue == "") {
+  const handleGmail = async () => {
+    if (email == "") {
       setError("* Email Required");
       return;
-    } else if (!isValidEmail(mailValue)) {
+    } else if (!isValidEmail(email)) {
       setError("* Invalid email");
       return;
     } else {
-      setMailValue("");
-      setError("")
+      
+
+      try {
+        const resUserExists = await fetch("api/userExists", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const { user } = await resUserExists.json();
+        const requestData = {
+          email: email,
+        };
+        if (!user) {
+          setError("* User does not exist !");
+          return;
+        } else {
+          try {
+            const response = await fetch(
+              "https://charakaserver.onrender.com/password_reset/request",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestData),
+              }
+            );
+            if (response.ok) {
+              // Request was successful, continue with your logic
+              console.log("Password reset request sent successfully.");
+              // You can clear the email input and error here if needed
+              setEmail("");
+              setError("");
+            } else {
+              // Handle server error or other issues here
+              console.error("Server error occurred. Please try again.");
+            }
+          } catch (error) {
+            console.error("Error occurred. Please try again.");
+          }
+        }
+      } catch (error) {
+        console.log("Error Occured. Please Try again!");
+        return;
+      }
     }
 
-    setForgotToggle(2)
+    setForgotToggle(2);
   };
 
-  const handleOtp = () =>{
-    if(otpValue == ""){
-        setError("* OTP is required!")
-        return
+  const handleOtp = () => {
+    if (otpValue == "") {
+      setError("* OTP is required!");
+      return;
+    } else {
+      setError("");
+      setEmail("");
+      setOtpValue("");
+      setForgotToggle(3);
     }
-    else{
-        setError("")
-        setMailValue("")
-        setOtpValue("")
-        setForgotToggle(3)
-    }
-  }
+  };
 
-  const handleGoback = () =>{
-    
-        setError("");
-        setMailValue("");
-        setOtpValue("");
-    setForgotToggle(1)
-  }
+  const handleGoback = () => {
+    setError("");
+    setEmail("");
+    setOtpValue("");
+    setForgotToggle(1);
+  };
 
   const handleSignIn = () => {
     if (confirmPass == "" || passwordValue == "") {
       setError("* All fields are required!");
-      return;}
-    else if (passwordValue.length < 8) {
+      return;
+    } else if (passwordValue.length < 8) {
       setError("* Password is too small");
       return;
     } else if (passwordValue != confirmPass) {
       setError("*Confirm Password did'nt match!");
       return;
     } else {
-      setMailValue("");
+      setEmail("");
       setPasswordValue("");
       setConfirmPass("");
       setError("");
@@ -137,18 +177,18 @@ function Forgot() {
             <div className={styles.input_segment}>
               <input
                 type="text"
-                value={mailValue}
+                value={email}
                 onChange={handleMailChange}
                 placeholder="Enter your email" // Changed placeholder text
               />
               <MdOutlineAlternateEmail />
-              {mailValue && (
-                <RxCross1 className={styles.cross} onClick={clearMailValue} />
+              {email && (
+                <RxCross1 className={styles.cross} onClick={clearemail} />
               )}
             </div>
 
             {error && <p className={styles.error}>{error}</p>}
-            <button className={styles.signin} onClick={handleGetOTP}>
+            <button className={styles.signin} onClick={handleGmail}>
               Get OTP
             </button>
             <div className={styles.linkSegment}>

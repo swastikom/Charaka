@@ -6,17 +6,22 @@ from functions.auth import get_password_hash
 from model.password_reset import OTPVerifyPayload, newPasswordSave
 import json
 from enum import Enum
+from pydantic import BaseModel
 
 router = APIRouter()
 
 
 class Tags(Enum):
     passwordReset = "Password Reset Routes"
+    
+
+class RequestData(BaseModel):
+    email: EmailStr
 
 
 @router.post("/password_reset/request", tags=[Tags.passwordReset])
-def request_password_reset(email: EmailStr):
-
+def request_password_reset(request_data: RequestData):
+    email = request_data.email
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
