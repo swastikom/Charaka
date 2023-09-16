@@ -3,7 +3,7 @@ from fastapi import HTTPException, APIRouter
 from schemas.user import User
 from functions.password_reset import generate_otp, send_email, get_saved_otp_from_database
 from functions.auth import get_password_hash
-from model.password_reset import OTPVerifyPayload, newPasswordSave
+from model.password_reset import newPasswordSave
 import json
 from enum import Enum
 from pydantic import BaseModel
@@ -40,7 +40,7 @@ def request_password_reset(request_data: RequestData):
     message = f"Your OTP for password reset is: {otp}"
     send_email(email, message)
 
-    return email
+    return user
 
 
 # @router.post("/password_reset/verify", tags=[Tags.passwordReset])

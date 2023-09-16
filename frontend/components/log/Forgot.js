@@ -87,14 +87,15 @@ function Forgot() {
         });
 
         const { user } = await resUserExists.json();
-        const requestData = {
-          email: email,
-        };
+        
         if (!user) {
-          setError("* User does not exist !");
+          setError("* User does not exist!");
           return;
         } else {
           try {
+            const requestData = {
+              email: email,
+            };
             const response = await fetch(
               "https://charakaserver.onrender.com/password_reset/request",
               {
