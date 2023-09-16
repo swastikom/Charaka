@@ -4,8 +4,8 @@ import Footer from '@/components/home/Footer';
 import About from '@/components/about/About';
 function page() {
   return (
-    <div className={styles.page}>
-      <About/>
+    <div className={styles.about_page}>
+      <About />
     </div>
   );
 }
