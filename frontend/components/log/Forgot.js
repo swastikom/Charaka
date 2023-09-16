@@ -330,7 +330,7 @@ const passResetData = {
             </div>
             {error && <p className={styles.error}>{error}</p>}
             <button className={styles.signin} onClick={handleSignIn}>
-              Sign in
+              Set Password
             </button>
             <button className={styles.goback} onClick={handleGoback}>
               Go back
