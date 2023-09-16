@@ -10,10 +10,11 @@ import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 function Forgot() {
   const [email, setEmail] = useState("");
-  const [otpValue, setOtpValue] = useState("");
+  const [otp, setOtp] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  const [otpError, setOtpError] = useState("");
+  const [otpmail, setOtpmail] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [showConPassword, setShowConPassword] = useState(false);
   const [error, setError] = useState("");
@@ -51,15 +52,15 @@ function Forgot() {
 
   const handleOtpChange = (e) => {
     const otpVal = e.target.value;
-    setOtpValue(otpVal);
+    setOtp(otpVal);
   };
 
   const clearemail = () => {
     setEmail("");
   };
 
-  const clearOtpValue = () => {
-    setOtpValue("");
+  const clearotp = () => {
+    setOtp("");
   };
 
   function isValidEmail(email) {
@@ -76,8 +77,6 @@ function Forgot() {
       setError("* Invalid email");
       return;
     } else {
-      
-
       try {
         const resUserExists = await fetch("api/userExists", {
           method: "POST",
@@ -110,6 +109,7 @@ function Forgot() {
               // Request was successful, continue with your logic
               console.log("Password reset request sent successfully.");
               // You can clear the email input and error here if needed
+              setOtpmail(email);
               setEmail("");
               setError("");
             } else {
@@ -129,14 +129,49 @@ function Forgot() {
     setForgotToggle(2);
   };
 
-  const handleOtp = () => {
-    if (otpValue == "") {
-      setError("* OTP is required!");
+  const handleOtp = async () => {
+    function isValidOtp(otpcheck) {
+      const pattern = /^\d{4}$/;
+
+      return pattern.test(otpcheck);
+    }
+    if (otp == "") {
+      setOtpError("* OTP is required!");
       return;
+    } else if (!isValidOtp(otp)) {
+      setOtpError("* OTP is Invalid!");
     } else {
+      const otpVerifyData = {
+        email: otpmail,
+        otp: otp,
+      };
+
+      try {
+        const response = await fetch(
+          "https://charakaserver.onrender.com/password_reset/verify",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(otpVerifyData),
+          }
+        );
+        if (response.ok) {
+          console.log(response);
+        } else {
+          // Handle server error or other issues here
+          setOtpError("* Wrong OTP Entered");
+          return;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
       setError("");
       setEmail("");
-      setOtpValue("");
+      setOtp("");
+      setOtpError("");
       setForgotToggle(3);
     }
   };
@@ -144,11 +179,12 @@ function Forgot() {
   const handleGoback = () => {
     setError("");
     setEmail("");
-    setOtpValue("");
+    setOtp("");
+    setOtpError("");
     setForgotToggle(1);
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     if (confirmPass == "" || passwordValue == "") {
       setError("* All fields are required!");
       return;
@@ -159,6 +195,31 @@ function Forgot() {
       setError("*Confirm Password did'nt match!");
       return;
     } else {
+
+const passResetData = {
+  email: otpmail,
+  newPassword: passwordValue,
+  confirmPass: confirmNewPassword
+};
+
+      try {
+        const response = await fetch(
+          "https://charakaserver.onrender.com/password_reset",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(passResetData),
+          }
+        );
+        if (response.ok) {
+          console.log(response);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
       setEmail("");
       setPasswordValue("");
       setConfirmPass("");
@@ -202,15 +263,13 @@ function Forgot() {
               <BsFillKeyFill />
               <input
                 type="text"
-                value={otpValue}
+                value={otp}
                 onChange={handleOtpChange}
                 placeholder="Enter OTP" // Changed placeholder text
               />
-              {otpValue && (
-                <RxCross1 className={styles.cross} onClick={clearOtpValue} />
-              )}
+              {otp && <RxCross1 className={styles.cross} onClick={clearotp} />}
             </div>
-            {error && <p className={styles.error}>{error}</p>}
+            {otpError && <p className={styles.error}>{error}</p>}
             <button className={styles.signin} onClick={handleOtp}>
               Submit
             </button>

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class OTPVerifyPayload(BaseModel):
@@ -6,5 +6,6 @@ class OTPVerifyPayload(BaseModel):
 
 
 class newPasswordSave(BaseModel):
+    email: EmailStr
     newPassword: str
     confirmNewPassword: str
