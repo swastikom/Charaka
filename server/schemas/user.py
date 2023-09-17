@@ -12,6 +12,7 @@ class Item(EmbeddedDocument):
     Cholesterol_Level = StringField()
     Disease_freq = StringField()
     outcome = StringField()
+    _id = StringField()
 
 
 class User(Document):

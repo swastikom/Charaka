@@ -12,6 +12,7 @@ const itemSchema = new Schema({
   Cholesterol_Level: String,
   Disease_freq: String,
   outcome: String,
+  
 });
 
 
