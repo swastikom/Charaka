@@ -22,6 +22,7 @@ function Menu() {
   const handleYes = () =>{
     if (sureLogout === "Logout") {
       signOut();
+      router.push('/')
     } else if (sureDelete === "Delete Your Account") {
 
     }

@@ -8,9 +8,19 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import SavedItems from "@/components/dashboard/SavedItems";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 function page() {
+  const { status, data: session } = useSession();
+
+  const router = useRouter()
+
+  if(status==='unauthenticated'){
+    router.push("/")
+  }
 
   const [position,setPosition] = useState(true)
+
+
 
   const handleLeft =()=>{
     setPosition(true)

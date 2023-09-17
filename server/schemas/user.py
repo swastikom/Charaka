@@ -1,4 +1,4 @@
-from mongoengine import Document, EmbeddedDocument, EmbeddedDocumentField, IntField, StringField, ListField, EmailField, DateTimeField
+from mongoengine import Document, EmbeddedDocument, EmbeddedDocumentField, IntField, StringField, ListField, EmailField, DateTimeField, ObjectIdField
 
 
 class Item(EmbeddedDocument):
@@ -12,7 +12,7 @@ class Item(EmbeddedDocument):
     Cholesterol_Level = StringField()
     Disease_freq = StringField()
     outcome = StringField()
-    _id = StringField()
+    _id = ObjectIdField()
 
 
 class User(Document):
