@@ -17,4 +17,22 @@
 }
 
 
+.dash_body{
+  display: flex;
+  align-items: center;
+}
+
+.leftright{
+  color: rgba(255, 255, 255, 0.603);
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.leftright:hover {
+  color: rgb(255, 255, 255);
+  font-size: 2em;
+  cursor: pointer;
+}
+
+
 

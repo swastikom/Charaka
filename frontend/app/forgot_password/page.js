@@ -5,17 +5,9 @@ import styles from "@/styles/page.module.css";
 import Forgot from "@/components/log/Forgot";
 
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
 
 function page() {
 
-  const { status, data: session } = useSession();
-  const router = useRouter();
-  if (status === "authenticated") {
-    router.replace("/");
-  }
 
   
   return (

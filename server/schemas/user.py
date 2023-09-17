@@ -2,7 +2,6 @@ from mongoengine import Document, EmbeddedDocument, EmbeddedDocumentField, IntFi
 
 
 class Item(EmbeddedDocument):
-    Id = StringField()
     Fever = StringField()
     Cough = StringField()
     Fatigue = StringField()

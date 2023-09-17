@@ -43,7 +43,11 @@
     justify-content: center;
     gap: 0.5em;
 }
-
+.sure{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
 .sure h3{
     font-weight: normal;
     font-size: 1.2em;
@@ -52,6 +56,29 @@
 
 .report:hover {
     cursor: pointer;
-    background: rgb(194, 0, 32);
+    background: #c20020;
 
+}
+.sureButton{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.choose{
+    background: none;
+    border: 2px solid #ffffffc7;
+    padding: 0.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.2em;
+    outline: none;
+    color: #ffffffc7;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.choose:hover{
+    border: 2px solid #c20020;
+    background-color: #c20020;
+    color: white;
 }

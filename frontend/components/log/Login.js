@@ -74,7 +74,7 @@ function Login() {
            return;
          }
          else{
-          router.push("/")
+          router.replace("/Dashboard")
          }
 
        } catch (error) {

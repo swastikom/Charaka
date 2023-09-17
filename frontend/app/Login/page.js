@@ -10,7 +10,7 @@ function page() {
   const { status, data: session } = useSession();
   const router = useRouter()
   if(status === "authenticated"){
-    router.replace("/");
+    router.replace("/Dashboard");
   }
 return (
   <div className={styles.page}>

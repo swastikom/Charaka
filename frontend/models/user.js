@@ -2,7 +2,6 @@ import mongoose, { Schema, models } from "mongoose";
 
 
 const itemSchema = new Schema({
-  Id: String,
   Fever: String,
   Cough: String,
   Fatigue: String,
