@@ -1,4 +1,5 @@
 import React from "react";
+import Menu from "./Menu";
 import styles from "@/styles/page.module.css";
 function Dashboard() {
 
@@ -8,7 +9,6 @@ function Dashboard() {
    
       return (
         <div className={styles.page}>
-          
           <button >Signout</button>
         </div>
       );

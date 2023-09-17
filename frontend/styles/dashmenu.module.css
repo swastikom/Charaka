@@ -1,0 +1,57 @@
+.menu{
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 1em;
+}
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    width: 100%;
+}
+.welcome{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.welcome h1{
+    font-size: 3em;
+    color: white;
+}
+.welcome h2 {
+    font-size: 3em;
+    color: #005eff;
+}
+.report {
+    padding-left: 5em;
+    padding-right: 5em;
+    padding: 0.5em;
+    background: #ae001d;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.sure h3{
+    font-weight: normal;
+    font-size: 1.2em;
+    color: #ffffffd2;
+}
+
+.report:hover {
+    cursor: pointer;
+    background: rgb(194, 0, 32);
+
+}
