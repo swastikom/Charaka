@@ -1,5 +1,5 @@
 from enum import Enum
-from fastapi import APIRouter, FastAPI, HTTPException
+from fastapi import APIRouter, FastAPI, HTTPException,Path
 from pydantic import BaseModel, EmailStr
 from mongoengine import connect
 from schemas.user import User
@@ -33,3 +33,22 @@ def fetch_itemlist(request_data: RequestData):
         return {"itemList": item_list}
     except User.DoesNotExist:
         raise HTTPException(status_code=404, detail="User not found")
+
+
+@router.delete("/items/{item_id}")
+async def delete_item(item_id: str = Path(..., title="Item ID")):
+    try:
+        # Find the user by ID
+        user = User.objects(itemList__id=item_id).first()
+
+        if user:
+            # Remove the item by its ID
+            user.itemList = [
+                item for item in user.itemList if str(item._id) != item_id]
+            user.save()
+            return {"message": "Item deleted successfully"}
+
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
