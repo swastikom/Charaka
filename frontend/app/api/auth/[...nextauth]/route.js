@@ -21,8 +21,8 @@ const authOptions = {
 
         try {
           await connectMongoDB();
-          const user = await User.findOne({ email });
-          console.log(user)
+          const user = await User.findOne({email});
+          console.log(user);
           if (!user) {
             return null;
           }

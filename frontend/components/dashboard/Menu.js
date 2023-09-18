@@ -8,10 +8,13 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+
 function Menu() {
 
   
+
   const { status, data: session } = useSession();
+  
   
   const [sureLogout,setSureLogout] = useState("")
   const [sureDelete,setSureDelete] = useState("")
@@ -52,7 +55,8 @@ function Menu() {
   return (
     <div className={styles.top}>
       <div className={styles.welcome}>
-        <h1>Welcome</h1> <h2>{session?.user?.name}</h2>
+        <h1>Welcome</h1>
+        {console.log(session?.user?.email)}{console.log('USER INFO ABOVE')} <h2>{session?.user?.name}</h2>
       </div>
       {sureLogout || sureDelete || sureResetPass ? (
         <div className={styles.sure}>

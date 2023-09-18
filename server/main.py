@@ -8,6 +8,7 @@ from mongoengine import connect
 
 from routes.prediction import router as prediction_router
 from routes.password_reset import router as password_reset_router
+from routes.user import router as user_router
 
 
 # Running FastAPI app
@@ -32,3 +33,4 @@ connect(host=MONGODB_URI)
 
 app.include_router(prediction_router)
 app.include_router(password_reset_router)
+app.include_router(user_router)
