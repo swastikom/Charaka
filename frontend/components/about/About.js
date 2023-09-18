@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image';
-import Footer from '../home/Footer';
+import Footer from '../home/footer/Footer';
 import base from '@/styles/base.module.css';
 // import styles from "@/styles/base.module.css";
 import styles from "@/styles/cardHolder.module.css";
