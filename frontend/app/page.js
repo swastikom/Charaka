@@ -3,7 +3,6 @@
 import { useSession } from 'next-auth/react'
 import styles from '@/styles/page.module.css'
 import Hero from '@/components/home/hero/Hero'
-import Footer from '@/components/home/Footer'
 import AltHero from '@/components/home/hero/AltHero'
 import { useRouter } from 'next/navigation'
 
