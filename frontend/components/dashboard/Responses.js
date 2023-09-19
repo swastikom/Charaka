@@ -60,15 +60,19 @@ function Responses() {
      if (response.ok) {
        console.log("Item deleted successfully!");
        // Update the UI or perform any other actions you need
-       setToggle(false)
-
+       setToggle(false);
+     } else if (response.status === 404) {
+       console.log("User not found.");
+     } else if (response.status === 400) {
+       console.log("Invalid index.");
      } else {
-       console.log("ERROR!");
+       console.log("An error occurred.");
      }
    } catch (error) {
-     console.log("Item not deleted successfully!");
-     return;
+     console.error("An unexpected error occurred:", error);
+     // Handle the error appropriately, e.g., show a user-friendly message
    }
+
  };
 
 
