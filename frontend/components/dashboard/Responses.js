@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import {TfiReload} from "react-icons/tfi"
+import { FaTrashAlt } from "react-icons/fa";
 import styles from "@/styles/responseCard.module.css";
 import Image from "next/image";
 
@@ -14,6 +15,7 @@ function Responses() {
   const [resList, setResList] = useState({ itemList: [] });
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [toggle, setToggle] = useState(false);
+  const [delSure, setDelsure] = useState(false)
 
   // Load the component's state from local storage on component mount
   useEffect(() => {
@@ -39,6 +41,37 @@ function Responses() {
       })
     );
   }, [resList, currentItemIndex, toggle]);
+
+
+
+ const handleDelete = async () => {
+   try {
+     const response = await fetch(
+       "https://charakaserver.onrender.com/delete_item/",
+       {
+         method: "DELETE",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify({ email: requestData, index: currentItemIndex }),
+       }
+     );
+
+     if (response.ok) {
+       console.log("Item deleted successfully!");
+       // Update the UI or perform any other actions you need
+     } else {
+       console.log("ERROR!");
+     }
+   } catch (error) {
+     console.log("Item not deleted successfully!");
+     return;
+   }
+ };
+
+
+
+
 
   const loadList = async () => {
     try {
@@ -87,12 +120,6 @@ function Responses() {
     <div>
       {resList.itemList.length > 0 && toggle === true ? (
         <div className={styles.res}>
-          <h1>
-            Your saved Reports{" "}
-            <button onClick={() => setToggle(false)}>
-              <RxCross2 />
-            </button>
-          </h1>
           <div className={styles.cardHolder}>
             <button
               onClick={navigatePrevious}
@@ -100,31 +127,87 @@ function Responses() {
             >
               <FaAngleLeft />
             </button>
-            <div className={styles.container}>
-              <div>
-                <p>Fever: {resList.itemList[currentItemIndex]?.Fever}</p>
-                <p>Cough: {resList.itemList[currentItemIndex]?.Cough}</p>
-                <p>Fatigue: {resList.itemList[currentItemIndex]?.Fatigue}</p>
-                <p>
-                  Breathing Difficulty:{" "}
-                  {resList.itemList[currentItemIndex]?.Difficulty_Breathing}
-                </p>
-                <p>Age: {resList.itemList[currentItemIndex]?.Age}</p>
-              </div>
-              <div>
-                <p>Gender: {resList.itemList[currentItemIndex]?.Gender}</p>
-                <p>
-                  Blood Pressure:{" "}
-                  {resList.itemList[currentItemIndex]?.Blood_Pressure}
-                </p>
-                <p>
-                  Cholesterol Level:{" "}
-                  {resList.itemList[currentItemIndex]?.Cholesterol_Level}
-                </p>
-                <p>
-                  Disease: {resList.itemList[currentItemIndex]?.Disease_freq}
-                </p>
-                <p>Report: {resList.itemList[currentItemIndex]?.outcome}</p>
+
+            <div>
+              {delSure ? (
+                <div className={styles.sure}>
+                  <h3>
+                    Do you want to delete this Report?
+                  </h3>
+                  <div className={styles.sureButton}>
+                    <button className={styles.choose} onClick={handleDelete}>
+                      Yes
+                    </button>
+                    <button className={styles.choose} onClick={()=>setDelsure(false)}>
+                      No
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className={styles.repHeading}>
+                  <h3>Report #{currentItemIndex + 1}</h3>
+                  <div>
+                    <button onClick={() => setDelsure(true)}>
+                      <FaTrashAlt />
+                    </button>
+                    <button onClick={() => setToggle(false)}>
+                      <RxCross2 />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <div className={styles.container}>
+                <div className={styles.cleft}>
+                  <div>
+                    <div>Fever:</div>
+                    <h3>{resList.itemList[currentItemIndex]?.Fever}</h3>
+                  </div>
+                  <div>
+                    <div>Cough:</div>
+                    <h3>{resList.itemList[currentItemIndex]?.Cough}</h3>
+                  </div>
+                  <div>
+                    <div>Fatigue: </div>
+                    <h3>{resList.itemList[currentItemIndex]?.Fatigue}</h3>
+                  </div>
+                  <div>
+                    <div>Breathing Difficulty: </div>
+                    <h3>
+                      {resList.itemList[currentItemIndex]?.Difficulty_Breathing}
+                    </h3>
+                  </div>
+                  <div>
+                    <div>Age:</div>
+                    <h3>{resList.itemList[currentItemIndex]?.Age}</h3>
+                  </div>
+                </div>
+                <div className={styles.cright}>
+                  <div>
+                    <div>Gender: </div>
+                    <h3> {resList.itemList[currentItemIndex]?.Gender}</h3>
+                  </div>
+                  <div>
+                    <div>Blood Pressure: </div>
+                    <h3>
+                      {resList.itemList[currentItemIndex]?.Blood_Pressure}
+                    </h3>
+                  </div>
+                  <div>
+                    <div>Cholesterol Level: </div>
+                    <h3>
+                      {resList.itemList[currentItemIndex]?.Cholesterol_Level}
+                    </h3>
+                  </div>
+                  <div>
+                    <div>Disease: </div>
+                    <h3>{resList.itemList[currentItemIndex]?.Disease_freq}</h3>
+                  </div>
+                  <div>
+                    <div>Report: </div>
+                    <h3>{resList.itemList[currentItemIndex]?.outcome}</h3>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -146,7 +229,7 @@ function Responses() {
           />
           <h2>Check if you're really having</h2>
           <h1>any Disease</h1>
-          <p>or</p>
+          <div>or</div>
           <button onClick={loadList}>
             <TfiReload />
             Your Reports

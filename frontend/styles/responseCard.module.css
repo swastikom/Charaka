@@ -5,15 +5,54 @@
     justify-content: space-between;
 }
 
+.sure {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding-bottom: 1em;
+}
+
+.sure h3 {
+    font-weight: normal;
+    font-size: 1em;
+    color: #ffffffd2;
+}
+
+.sureButton {
+    display: flex;
+    align-items: center;
+    font-size: 0.4em;
+}
+
+.choose {
+    background: none;
+    border: 2px solid #ffffffc7;
+    padding: 0.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    outline: none;
+    color: #ffffffc7;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.choose:hover {
+    background-color: #c20020;
+    color: white;
+}
+
 .container{
     padding: 2em;
     display: flex;
     align-items: center;
-    gap: 3em;
-    border: 2px solid rgba(255, 255, 255, 0.442);
-    border-radius: 10px;
-    width: 35em;
+    gap: 4em;
+    border: none;
     justify-content: center;
+    background-color: rgba(255, 255, 255, 0.042);
+    border-radius: 6px;
+
 }
 
 .container div p{
@@ -89,16 +128,13 @@
 }
 
 .res{
-    gap: 2em;
-}
-.res h1{
-    color: #005eff;
-    font-size: 3em;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
-    font-weight: normal;
-    gap: 0.5em;
+}
+
+.repHeading div{
+    display:  flex;
+    align-items: center;
+    gap: 1.5em;
 }
 
 .res h1 button{
@@ -115,4 +151,87 @@
 .res h1 button:hover{
     color:  white;
     cursor: pointer;
+}
+
+.repHeading{
+    display:  flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.repHeading h3{
+    background-color: blue;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 6px;
+    font-size: 1.2em;
+}
+
+.repHeading button{
+    padding-left: 5em;
+        padding-right: 5em;
+        padding: 0.5em;
+        background: #ae001d;
+        color: white;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+}
+
+.repHeading button:hover{
+
+    cursor: pointer;
+        background: #c20020;
+}
+.cleft div{
+    display: felx;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 0.5em;
+        padding-bottom: 0.5em;
+}
+
+.cright div {
+    display: felx;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.cright div h3{
+    background-color: #002fff;
+    padding-left: 1em;
+        padding-right: 1em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        border-radius: 6px;
+        font-size: 1em;
+        justify-content: center;
+        width: fit-content;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+}
+
+.cleft div h3 {
+    background-color: #002fff;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 6px;
+    font-size: 1em;
+    justify-content: center;
+    width: fit-content;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
