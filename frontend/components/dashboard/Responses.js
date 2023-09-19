@@ -47,7 +47,7 @@ function Responses() {
  const handleDelete = async () => {
    try {
      const response = await fetch(
-       "https://charakaserver.onrender.com/delete_item/",
+       "https://charakaserver.onrender.com/delete_item",
        {
          method: "DELETE",
          headers: {
@@ -60,6 +60,8 @@ function Responses() {
      if (response.ok) {
        console.log("Item deleted successfully!");
        // Update the UI or perform any other actions you need
+       setToggle(false)
+
      } else {
        console.log("ERROR!");
      }
