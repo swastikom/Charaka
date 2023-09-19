@@ -7,12 +7,21 @@
 }
 
 .Container h1{
-    font-size: 3em;
-    background: -webkit-linear-gradient(rgb(87, 149, 255), #0178ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    font-size: 2.5em;
+    color: white;
+    background-color: blue;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    border-radius: 6px;
 }
 
+.buttonGroup{
+    display: flex;
+    align-items: center;
+    gap: 5em;
+}
 
 
 .Container h3{
@@ -49,26 +58,6 @@
     border-radius: 5em;
 }
 
-.save{
-    font-size: 1.5em;
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-        background-color: #0178ff;
-        border: none;
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
-        padding-left: 1em;
-        padding-right: 1em;
-        width: fit-content;
-        font-weight: bold;
-        border-radius: 5px;
-        color: rgb(255, 255, 255);
-}
-
-.save:hover{
-    background-color: #0178ffe7;
-    cursor: pointer;
-}
 
 .prediction{
     font-size: 1.5em;

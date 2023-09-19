@@ -57,7 +57,7 @@ async def delete_user_by_email(email: str):
         return {"error": str(e)}
 
 
-@router.delete("/delete_item/")
+@router.delete("/delete_item")
 async def delete_item(request_data: DeleteItemRequest):
     try:
         # Find the user by email

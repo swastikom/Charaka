@@ -121,15 +121,19 @@ function Response({
           </div>
         </div>
       </div>
-      <button onClick={handleResponse}>
-        <AiOutlineArrowLeft />
-        Go back
-      </button>{
-        status==='authenticated'?
-      <button className={styles.save}onClick={saveResponse}>
-        Save
-      </button>:<div></div>
-      }
+      <div className={styles.buttonGroup}>
+        <button onClick={handleResponse}>
+          <AiOutlineArrowLeft />
+          Go back
+        </button>
+        {status === "authenticated" ? (
+          <button className={styles.save} onClick={saveResponse}>
+            Save
+          </button>
+        ) : (
+          <div></div>
+        )}
+      </div>
     </div>
   );
 }
