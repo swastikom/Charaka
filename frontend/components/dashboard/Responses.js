@@ -8,6 +8,7 @@ import {TfiReload} from "react-icons/tfi"
 import { FaTrashAlt } from "react-icons/fa";
 import styles from "@/styles/responseCard.module.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 function Responses() {
   const { status, data: session } = useSession();
@@ -17,6 +18,8 @@ function Responses() {
   const [toggle, setToggle] = useState(false);
   const [delSure, setDelsure] = useState(false)
 
+
+  const router = useRouter()
   // Load the component's state from local storage on component mount
   useEffect(() => {
     const savedState = localStorage.getItem("responsesState");
@@ -61,6 +64,8 @@ function Responses() {
        console.log("Item deleted successfully!");
        // Update the UI or perform any other actions you need
        setToggle(false);
+       router.push("/dashboard")
+       router
      } else if (response.status === 404) {
        console.log("User not found.");
      } else if (response.status === 400) {
