@@ -64,7 +64,7 @@ function Responses() {
        console.log("Item deleted successfully!");
        // Update the UI or perform any other actions you need
        setToggle(false);
-       router.push("/dashboard")
+       router.push("/Dashboard")
        router
      } else if (response.status === 404) {
        console.log("User not found.");
