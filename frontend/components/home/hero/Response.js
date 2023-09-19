@@ -36,7 +36,7 @@ function Response({
     Blood_Pressure: Blood_Pressure,
     Cholesterol_Level: Cholesterol_Level,
     Disease_freq: Disease_freq,
-    Outcome: Outcome
+    outcome: Outcome
   }
     // ... (populate the rest of the fields)
   };

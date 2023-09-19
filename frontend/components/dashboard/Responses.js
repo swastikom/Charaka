@@ -102,31 +102,32 @@ function Responses() {
             </button>
             <div className={styles.container}>
               <div>
-                <p>Fever: {resList.itemList[currentItemIndex].Fever}</p>
-                <p>Cough: {resList.itemList[currentItemIndex].Cough}</p>
-                <p>Fatigue: {resList.itemList[currentItemIndex].Fatigue}</p>
+                <p>Fever: {resList.itemList[currentItemIndex]?.Fever}</p>
+                <p>Cough: {resList.itemList[currentItemIndex]?.Cough}</p>
+                <p>Fatigue: {resList.itemList[currentItemIndex]?.Fatigue}</p>
                 <p>
                   Breathing Difficulty:{" "}
-                  {resList.itemList[currentItemIndex].Difficulty_Breathing}
+                  {resList.itemList[currentItemIndex]?.Difficulty_Breathing}
                 </p>
-                <p>Age: {resList.itemList[currentItemIndex].Age}</p>
+                <p>Age: {resList.itemList[currentItemIndex]?.Age}</p>
               </div>
               <div>
-                <p>Gender: {resList.itemList[currentItemIndex].Gender}</p>
+                <p>Gender: {resList.itemList[currentItemIndex]?.Gender}</p>
                 <p>
                   Blood Pressure:{" "}
-                  {resList.itemList[currentItemIndex].Blood_Pressure}
+                  {resList.itemList[currentItemIndex]?.Blood_Pressure}
                 </p>
                 <p>
                   Cholesterol Level:{" "}
-                  {resList.itemList[currentItemIndex].Cholesterol_Level}
+                  {resList.itemList[currentItemIndex]?.Cholesterol_Level}
                 </p>
                 <p>
-                  Disease: {resList.itemList[currentItemIndex].Disease_freq}
+                  Disease: {resList.itemList[currentItemIndex]?.Disease_freq}
                 </p>
-                <p>Report: {resList.itemList[currentItemIndex].outcome}</p>
+                <p>Report: {resList.itemList[currentItemIndex]?.outcome}</p>
               </div>
             </div>
+
             <button
               onClick={navigateNext}
               disabled={currentItemIndex === resList.itemList.length - 1}
