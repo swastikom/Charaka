@@ -1,0 +1,59 @@
+.main_div{
+    margin-top: 30px;
+}
+.test_div{
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.test_head{
+    text-align: center;
+}
+
+.card_contain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.icon{
+    font-size: 40px;
+}
+.icon:hover{
+    color: blue;
+    transition: 0.2s ease-in-out;
+
+}
+
+.card_div{
+    height: 350px;
+    width: 335px;
+    border: 1px solid blue;
+    margin: 10px;
+    border-radius: 20px;
+
+}
+.img_contain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+.card_img{
+    border: none;
+    border-radius: 60px;
+
+}
+.card_head{
+    text-align: center;
+    padding: 40px;
+
+}
+.p_des{
+    text-align: center;
+    font-style: italic;
+    padding: 10px;
+}
