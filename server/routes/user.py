@@ -35,20 +35,18 @@ def fetch_itemlist(request_data: RequestData):
         raise HTTPException(status_code=404, detail="User not found")
 
 
-@router.delete("/items/{item_id}")
-async def delete_item(item_id: str = Path(..., title="Item ID")):
+@router.delete("/delete_user/{email}")
+async def delete_user_by_email(email: str):
     try:
-        # Find the user by ID
-        user = User.objects(itemList__id=item_id).first()
+        # Find the user by email
+        user = User.objects(email=email).first()
 
-        if user:
-            # Remove the item by its ID
-            user.itemList = [
-                item for item in user.itemList if str(item._id) != item_id]
-            user.save()
-            return {"message": "Item deleted successfully"}
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
 
-        raise HTTPException(status_code=404, detail="Item not found")
+        # Delete the user
+        user.delete()
 
+        return {"message": f"User with email {email} deleted successfully"}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        return {"error": str(e)}

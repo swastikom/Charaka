@@ -22,12 +22,31 @@ function Menu() {
 
   const router = useRouter()
 
-  const handleYes = () =>{
+  const handleYes = async () =>{
     if (sureLogout === "Logout") {
       signOut();
       router.push('/')
     } else if (sureDelete === "Delete Your Account") {
+      try {
+      // Make a DELETE request to your FastAPI route for deleting a user
+      const response = await fetch(
+        `https://charakaserver.onrender.com/delete_user/${session?.user?.email}`,
+        {
+          method: "DELETE",
+        }
+      );
 
+      if (response.ok) {
+        // User deleted successfully, sign out and redirect to home page
+        await signOut();
+        router.push('/');
+      } else {
+        // Handle errors here, such as displaying an error message to the user
+        console.error('Failed to delete user');
+      }
+    } catch (error) {
+      console.error('An error occurred while deleting user:', error);
+    }
     }
     else if (sureResetPass === "Reset Password") {
       router.push("/forgot_password")

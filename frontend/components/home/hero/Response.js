@@ -26,7 +26,8 @@ function Response({
   const newItemData = {
     email: email,
     item:
-    {Fever: Fever,
+    {
+    Fever: Fever,
     Cough: Cough,
     Fatigue: Fatigue,
     Difficulty_Breathing: Difficulty_Breathing,
@@ -35,7 +36,8 @@ function Response({
     Blood_Pressure: Blood_Pressure,
     Cholesterol_Level: Cholesterol_Level,
     Disease_freq: Disease_freq,
-    Outcome: Outcome}
+    Outcome: Outcome
+  }
     // ... (populate the rest of the fields)
   };
 

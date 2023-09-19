@@ -1,0 +1,118 @@
+.res{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container{
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    gap: 3em;
+    border: 2px solid rgba(255, 255, 255, 0.442);
+    border-radius: 10px;
+    width: 35em;
+    justify-content: center;
+}
+
+.container div p{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 1.2em;
+
+}
+
+.beforeLoading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2em;
+}
+
+.beforeLoading h1{
+    font-size: 3.3em;
+    color: #005eff;
+}
+
+.beforeLoading h2{
+    font-weight: normal;
+    font-size: 1.5em;
+}
+
+.beforeLoading button{
+    font-size: 1.2em;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17em;
+    padding: 0.3em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 6px;
+    margin-top: 1em;
+    outline: none;
+    border: none;
+    background-color: #002fff;
+    color: white;
+    gap:0.5em;
+    cursor: pointer;
+}
+.beforeLoading button:hover{
+    background-color:#005eff;
+}
+.image{
+    margin-bottom: 1em;
+}
+
+.cardHolder{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1em;
+}
+
+.cardHolder button{
+    font-size: 2.5em;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+.cardHolder button:disabled{
+    color: #ffffff8c;
+}
+
+.res{
+    gap: 2em;
+}
+.res h1{
+    color: #005eff;
+    font-size: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: normal;
+    gap: 0.5em;
+}
+
+.res h1 button{
+    color: grey;
+    display:  flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.res h1 button:hover{
+    color:  white;
+    cursor: pointer;
+}

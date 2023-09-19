@@ -20,6 +20,8 @@
 .dash_body{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 10em;
 }
 
 .leftright{
@@ -33,6 +35,8 @@
   font-size: 2em;
   cursor: pointer;
 }
+
+
 
 
 
