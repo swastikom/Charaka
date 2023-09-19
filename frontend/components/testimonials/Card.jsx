@@ -9,6 +9,7 @@ function Card(props){
                 <Image src={props.image} height={80} width={80} className={card.card_img}></Image>
             </div>
             <h3 className={card.card_head}>{props.name}</h3>
+            <p className={card.p_rating}>{props.rating}</p>
             <p className={card.p_des}>{props.des}</p>
         </div>
     );
