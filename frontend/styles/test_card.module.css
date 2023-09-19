@@ -1,38 +1,57 @@
 .main_div{
-    margin-top: 30px;
+    margin-top: 70px;
+    margin-bottom: 90px;
 }
 .test_div{
     padding: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    /* align-items: center;
+    justify-content: center; */
+    /* overflow-x: scroll; */
+    overflow: hidden;
+    min-width: 77%;
+    max-width: 77%;
+    /* gap: 10px; */
 }
+/* .test_div {
+    overflow-x: auto; 
+    white-space: nowrap; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px; 
+  } */
 .test_head{
     text-align: center;
+    color: #0178ff;
+    font-size: 3em;
+    /* gap: 5em; */
 }
-
+.test_head svg{margin-right: 15px;}
 .card_contain{
     display: flex;
     align-items: center;
     justify-content: center;
+    /* overflow: hidden; */
     
+    /* position: relative; */
 }
 
 .icon{
     font-size: 40px;
 }
 .icon:hover{
-    color: blue;
+    color: #0178ff;
     transition: 0.2s ease-in-out;
 
 }
 
 .card_div{
     height: 350px;
-    width: 335px;
-    border: 1px solid blue;
-    margin: 10px;
+    min-width: 335px;
+    max-width: 335px;
+    border: 1px solid #0178ff;
+    margin: 20px;
     border-radius: 20px;
 
 }
@@ -47,13 +66,19 @@
     border-radius: 60px;
 
 }
+.p_rating{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .card_head{
     text-align: center;
-    padding: 40px;
-
+    padding: 20px;
+    color: rgb(143, 212, 235);
 }
 .p_des{
     text-align: center;
     font-style: italic;
-    padding: 10px;
+    padding: 25px;
+
 }
