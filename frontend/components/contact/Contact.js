@@ -7,7 +7,7 @@ function contact() {
   return (<div className={styles.base}>
   <Image
   src="/contact.png"
-  width={600}
+  width={650}
   height={600}/>
 
   <ContactForm/>

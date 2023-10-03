@@ -75,7 +75,7 @@ function Menu() {
     <div className={styles.top}>
       <div className={styles.welcome}>
         <h1>Welcome</h1>
-        {console.log(session?.user?.email)}{console.log('USER INFO ABOVE')} <h2>{session?.user?.name}</h2>
+        {console.log(session?.user?.email)}{console.log('USER INFO ABOVE')} 
       </div>
       {sureLogout || sureDelete || sureResetPass ? (
         <div className={styles.sure}>

@@ -18,7 +18,7 @@ function HeroLeft() {
       <h1>Diseases? Verify!</h1>
       <h2>Check out any disease whether it is positive or negative, with Charaka!</h2>
       <button onClick={handleNavigateToLogin}>
-        <GiAlliedStar /> Contribute
+        <GiAlliedStar /> Save Report
       </button>
     </div>
   );
