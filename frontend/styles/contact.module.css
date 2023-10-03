@@ -67,3 +67,7 @@
     color: white;
     background-color: rgba(0, 64, 255, 0.648);
 }
+
+.errorMessage{
+    color: crimson;
+}
