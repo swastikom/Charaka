@@ -18,6 +18,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
+    "https://charaka.vercel.app"
 ]
 
 app.add_middleware(
